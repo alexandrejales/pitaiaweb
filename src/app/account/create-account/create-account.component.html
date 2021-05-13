@@ -1,0 +1,33 @@
+<h2 class="text-center">Criar minha conta</h2>
+
+<form (ngSubmit)="onSubmit(formCadastro)" #formCadastro="ngForm">
+    <div class="row">
+        <div class="col-sm">
+            <mat-form-field appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="nome" [(ngModel)]="createAccount.nome" name="nome" id="nome" required>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="nome@example.com" [(ngModel)]="createAccount.email" name="email" id="email" type="email" required>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="createAccount.senha" name="senha" id="senha" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar senha'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <button class="my-button" mat-flat-button type="submit" color="primary" [disabled]="formCadastro.form.invalid">Entrar</button>
+    <button mat-flat-button color="accent" [routerLink]=" [ '/login'] ">Voltar</button>
+</form>

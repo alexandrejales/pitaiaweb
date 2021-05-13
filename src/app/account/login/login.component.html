@@ -1,0 +1,24 @@
+<h2 class="text-center">Entrar</h2>
+
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="row">
+        <div class="col-sm">
+            <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="nome@example.com" [(ngModel)]="login.email" name="email" id="email" required>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="login.senha" name="senha" id="senha" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar senha'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <button mat-flat-button type="submit" color="primary">Entrar</button>
+    <a mat-flat-button [routerLink]="['/create-account']">Criar Conta</a>
+</form>
