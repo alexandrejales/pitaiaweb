@@ -18,7 +18,7 @@ export class AccountService {
 			'Content-Type': 'application/json'
 		})
 	};
-
+	//Contrutor
 	constructor(private httpClient: HttpClient) { }
 
 	login(login: Login): Observable<Login> {
