@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Colaborador } from 'src/app/model/colaborador';
+import { Colaborador } from 'src/app/model/entity/colaborador';
 
 @Component({
 	selector: 'app-colaborador-cadastro',

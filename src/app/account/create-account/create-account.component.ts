@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CreateAccountDto } from 'src/app/model/dto/create-account-dto';
-import { Usuario } from 'src/app/model/usuario';
+import { Router } from '@angular/router';
+import { CriarContaForm } from 'src/app/model/form/criar-conta-form';
 import { AccountService } from '../shared/account.service';
 
 @Component({
@@ -11,27 +11,24 @@ import { AccountService } from '../shared/account.service';
 })
 export class CreateAccountComponent implements OnInit {
 
-    createAccount: CreateAccountDto = new CreateAccountDto();
+    criarContaForm: CriarContaForm = new CriarContaForm();
     hide: boolean = true;
 
-    constructor(private accountService: AccountService) { }
+    constructor(private accountService: AccountService, private router: Router) { }
 
     ngOnInit(): void {
     }
 
     //Cria Nova Conta
     onSubmit(form: NgForm) {
-        this.accountService.createAccount(this.createAccount).subscribe(
-            () => {
-                this.cleanForm(form);
-            }
+        this.accountService.createAccount(this.criarContaForm).subscribe(
+            () => this.router.navigateByUrl('')
         );
     }
 
     //Limpa Formulário
     cleanForm(form: NgForm) {
         form.resetForm();
-        this.createAccount = {} as CreateAccountDto;
+        this.criarContaForm = {} as CriarContaForm;
     }
-
 }

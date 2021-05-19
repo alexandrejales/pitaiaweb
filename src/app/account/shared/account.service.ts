@@ -2,11 +2,12 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { CreateAccountDto } from 'src/app/model/dto/create-account-dto';
-import { Login } from 'src/app/model/login';
-import { Usuario } from 'src/app/model/usuario';
+import { catchError, retry, tap } from 'rxjs/operators';
+import { UsuarioDto } from 'src/app/model/dto/usuario-dto';
+import { CriarContaForm } from 'src/app/model/form/criar-conta-form';
+import { LoginForm } from 'src/app/model/form/login-form';
 import { Library } from 'src/app/resource/library';
+import { ToastService } from 'src/app/service/toast.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,21 +17,49 @@ export class AccountService {
 	httpOptions = {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json'
-		})
+		}),
 	};
-	//Contrutor
-	constructor(private httpClient: HttpClient) { }
 
-	login(login: Login): Observable<Login> {
-		return this.httpClient.post<Usuario>(Library.API_URL + '/teste', login, this.httpOptions)
-			.pipe(
-				retry(1),
-				catchError(this.handleError)
+	constructor(private httpClient: HttpClient, private toastService: ToastService) { }
+
+	login(loginForm: LoginForm) {
+		this.httpClient.post<UsuarioDto>(Library.API_URL + '/conta/logar', loginForm, this.httpOptions)
+			.subscribe(
+				{
+					next: data => {
+						Library.usuarioLogado = data;
+						window.localStorage.setItem('token', 'lksjdf hadjfahldjkalhdald jkfahlds kjh laksj');
+						console.log(data);
+					},
+					error: error => {
+						console.log(error.message);
+					}
+				}
 			)
 	}
 
-	createAccount(createAccount: CreateAccountDto): Observable<CreateAccountDto> {
-		return this.httpClient.post<CreateAccountDto>(Library.API_URL + '/teste', createAccount, this.httpOptions)
+	login2(loginForm: LoginForm): Observable<UsuarioDto> {
+
+		return this.httpClient.post<UsuarioDto>(Library.API_URL + '/conta/logar', loginForm, this.httpOptions)
+			.pipe(
+				catchError(this.handleError)
+			)
+		// .subscribe(
+		// 	{
+		// 		next: data => {
+		// 			Library.usuarioLogado = data;
+		// 			window.localStorage.setItem('token', 'lksjdf hadjfahldjkalhdald jkfahlds kjh laksj');
+		// 			console.log(data);
+		// 		},
+		// 		error: error => {
+		// 			console.log(error.message);
+		// 		}
+		// 	}
+		// )
+	}
+
+	createAccount(criarContaForm: CriarContaForm): Observable<CriarContaForm> {
+		return this.httpClient.post<CriarContaForm>(Library.API_URL + '/conta/criar', criarContaForm, this.httpOptions)
 			.pipe(
 				retry(1),
 				catchError(this.handleError)
@@ -39,15 +68,24 @@ export class AccountService {
 
 	// Manipulação de erros
 	handleError(error: HttpErrorResponse) {
-		let errorMessage = '';
-		if (error.error instanceof ErrorEvent) {
-			// Erro ocorreu no lado do client
-			errorMessage = error.error.message;
+
+		if (error.status == 403) {
+			console.log("Email ou senha inválidos.");
+			let msg: string = error.error.mensagem;
+
+			this.toastService.openAlertSnackBar("Deu Erro");
+			return throwError(error.error.mensagem);
 		} else {
-			// Erro ocorreu no lado do servidor
-			errorMessage = 'Código do erro: ${error.status}, ' + 'menssagem: ${error.message}';
+			let errorMessage = '';
+			if (error.error instanceof ErrorEvent) {
+				// Erro ocorreu no lado do client
+				errorMessage = error.error.message;
+			} else {
+
+				errorMessage = 'Código do erro: ' + error.status + ' Menssagem: ' + error.message;
+			}
+			console.log(errorMessage);
+			return throwError(errorMessage);
 		}
-		console.log(errorMessage);
-		return throwError(errorMessage);
 	};
 }

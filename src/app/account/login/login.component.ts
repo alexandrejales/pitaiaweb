@@ -1,70 +1,57 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../shared/account.service';
 import { HttpClient } from '@angular/common/http';
-import { Login } from 'src/app/model/login';
+import { LoginForm } from 'src/app/model/form/login-form';
+import { ToastService } from 'src/app/service/toast.service';
+import { Constante } from 'src/app/resource/contante';
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  login: Login = new Login();
-  readonly apiURL: string;
-  hide: boolean = true;
 
-  constructor(private http: HttpClient, private accountService: AccountService, private router: Router) {
-    this.apiURL = 'http://localhost:8080';
-  }
+	durationInSeconds = 5;
 
-  ngOnInit(): void {
-  }
 
-  onSubmit() {
-    console.log(this.login.email + this.login.senha);
-    this.logar();
-    //   try {
-    //     const result = await this.accountService.login(this.login);
-    //     console.log('Login efetuado: ${result}');
 
-    //     //Navega para rota vazia novamente
+	loginForm: LoginForm = new LoginForm();
+	hide: boolean = true;
 
-    //     console.log("Loin realizado");
+	constructor(private http: HttpClient, private accountService: AccountService, private router: Router, private toastService: ToastService) {
+	}
 
-    //   } catch (error) {
-    //     console.log("Deu erro no login");
-    //     console.error(error);
-    //   }
-    //   this.router.navigate(['/']);
-  }
+	openSnackBar() {
+		this.toastService.openSeccessSnackBar("Ola Alexandre");
+	}
 
-  async listarTodos() {
-    this.http.get(this.apiURL + '/teste')
-      .subscribe(
-        resultado => {
-          console.log(resultado)
-        },
-        erro => {
-          if (erro.status == 404) {
-            console.log('Produto não localizado.');
-          }
-        }
-      );
-  }
+	ngOnInit(): void {
+		this.toastService.openSeccessSnackBar("Realize seu login");
+	}
 
-  async logar() {
-    this.http.post(this.apiURL + "/teste", this.login)
-      .subscribe(
-        resultado => {
-          console.log(resultado)
-        },
-        erro => {
-          if (erro.status == 400) {
-            console.log(erro);
-          }
-        }
-      );
-  }
+	onSubmit() {
+		this.logar();
+	}
+
+	logar() {
+		window.localStorage.setItem('token', 'ajt409twupwourein8tw7958wm4c8w3489m2-8342');
+		window.localStorage.setItem(Constante.EMAIL, this.loginForm.email);
+		Constante.login.email = this.loginForm.email;
+		this.router.navigateByUrl('/');
+		// Chamada ao servidor para autenticar
+		// this.accountService.login2(this.loginForm).subscribe(
+		// 	{
+		// 		next: data => {
+		// 			Library.usuarioLogado = data;
+		// 			window.localStorage.setItem('token', 'lksjdf hadjfahldjkalhdald jkfahlds kjh laksj');
+		// 			console.log(data);
+		// 			this.toastService.openSeccessSnackBar("Bem vindo " + Library.usuarioLogado.email);
+		// 			this.router.navigateByUrl('/create-account');
+		// 		}
+		// 	}
+		// )
+	}
 }

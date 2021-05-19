@@ -30,6 +30,15 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoginSnackBarComponent } from './layout/toast/login-snack-bar/login-snack-bar.component';
+import { AlertSnackBarComponent } from './layout/toast/alert-snack-bar/alert-snack-bar.component';
+import { SuccessSnackBarComponent } from './layout/toast/success-snack-bar/success-snack-bar.component';
+import { InfoSnackBarComponent } from './layout/toast/info-snack-bar/info-snack-bar.component';
+import { DashboardHomeComponent } from './pages/dashboard-home/dashboard-home.component';
+import { FiliaisComponent } from './pages/filiais/filiais.component';
+import { FilialListItemComponent } from './components/filial-list-item/filial-list-item.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 @NgModule({
 	declarations: [
@@ -37,14 +46,22 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 		TaskListComponent,
 		TaskListItemComponent,
 		TaskFormComponent,
-		LoginComponent,
 		CreateAccountComponent,
 		HomeComponent,
 		AuthenticationComponent,
+		LoginComponent,
 		MenuComponent,
 		FooterComponent,
 		ColaboradorCadastroComponent,
 		ColaboradorListarComponent,
+		LoginSnackBarComponent,
+		AlertSnackBarComponent,
+		SuccessSnackBarComponent,
+		InfoSnackBarComponent,
+  DashboardHomeComponent,
+  FiliaisComponent,
+  FilialListItemComponent,
+  UserInfoComponent,
 	],
 	imports: [
 		FormsModule,
@@ -64,7 +81,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 		MatGridListModule,
 		MatCheckboxModule,
 		MatSelectModule,
-		MatDatepickerModule
+		MatDatepickerModule,
+		MatSnackBarModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
