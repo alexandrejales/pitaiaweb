@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Login } from 'src/app/model/entity/login';
 import { Constante } from 'src/app/resource/contante';
 
@@ -9,7 +9,8 @@ import { Constante } from 'src/app/resource/contante';
 })
 export class UserInfoComponent implements OnInit {
 
-  login: Login = Constante.login;
+  @Input()
+  email: string = '';
 
   constructor() { }
 

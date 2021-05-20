@@ -2,7 +2,7 @@ import { Endereco } from "./endereco";
 
 export class Empresa {
     id: number = 0;
-    bloqueado: string = '';
+    bloqueado: boolean = false;
     cnpj: string = '';
     inscricaoEstadual: string = '';
     nomeFantasia: string = '';

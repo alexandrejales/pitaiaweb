@@ -39,6 +39,7 @@ import { DashboardHomeComponent } from './pages/dashboard-home/dashboard-home.co
 import { FiliaisComponent } from './pages/filiais/filiais.component';
 import { FilialListItemComponent } from './components/filial-list-item/filial-list-item.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
 	declarations: [
@@ -58,10 +59,10 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 		AlertSnackBarComponent,
 		SuccessSnackBarComponent,
 		InfoSnackBarComponent,
-  DashboardHomeComponent,
-  FiliaisComponent,
-  FilialListItemComponent,
-  UserInfoComponent,
+		DashboardHomeComponent,
+		FiliaisComponent,
+		FilialListItemComponent,
+		UserInfoComponent,
 	],
 	imports: [
 		FormsModule,
@@ -83,6 +84,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 		MatSelectModule,
 		MatDatepickerModule,
 		MatSnackBarModule,
+		MatTableModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
