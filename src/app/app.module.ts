@@ -31,15 +31,22 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 import { LoginSnackBarComponent } from './layout/toast/login-snack-bar/login-snack-bar.component';
 import { AlertSnackBarComponent } from './layout/toast/alert-snack-bar/alert-snack-bar.component';
 import { SuccessSnackBarComponent } from './layout/toast/success-snack-bar/success-snack-bar.component';
 import { InfoSnackBarComponent } from './layout/toast/info-snack-bar/info-snack-bar.component';
 import { DashboardHomeComponent } from './pages/dashboard-home/dashboard-home.component';
-import { FiliaisComponent } from './pages/filiais/filiais.component';
 import { FilialListItemComponent } from './components/filial-list-item/filial-list-item.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { MatTableModule } from '@angular/material/table';
+import { CadastroFilialComponent } from './pages/filiais/cadastro-filial/cadastro-filial.component';
+import { ListaFilialComponent } from './pages/filiais/lista-filial/lista-filial.component';
+import { EnderecoFormComponent } from './components/endereco-form/endereco-form.component';
+import { ListaUsuarioAdmComponent } from './pages/administrativo/lista-usuario-adm/lista-usuario-adm.component';
+import { PessoaFormComponent } from './components/pessoa-form/pessoa-form.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { CadastroUsuarioAdmComponent } from './pages/administrativo/cadastro-usuario-adm/cadastro-usuario-adm.component';
 
 @NgModule({
 	declarations: [
@@ -60,9 +67,14 @@ import { MatTableModule } from '@angular/material/table';
 		SuccessSnackBarComponent,
 		InfoSnackBarComponent,
 		DashboardHomeComponent,
-		FiliaisComponent,
 		FilialListItemComponent,
 		UserInfoComponent,
+		CadastroFilialComponent,
+		ListaFilialComponent,
+		EnderecoFormComponent,
+		ListaUsuarioAdmComponent,
+		PessoaFormComponent,
+		CadastroUsuarioAdmComponent,
 	],
 	imports: [
 		FormsModule,
@@ -85,6 +97,8 @@ import { MatTableModule } from '@angular/material/table';
 		MatDatepickerModule,
 		MatSnackBarModule,
 		MatTableModule,
+		MatNativeDateModule,
+		MatMenuModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]

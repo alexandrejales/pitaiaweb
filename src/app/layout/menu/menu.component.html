@@ -2,15 +2,15 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar>Pitaia</mat-toolbar>
         <mat-nav-list>
-            <a mat-list-item href="/">
+            <a mat-list-item href="" routerLink="/">
                 <mat-icon>home</mat-icon>
                 <div>Início</div>
             </a>
-            <a mat-list-item href="/filiais">
+            <a mat-list-item href="" routerLink="/filiais">
                 <mat-icon>apartment</mat-icon>
                 <div>Filiais</div>
             </a>
-            <a mat-list-item href="#" routerLink="">
+            <a mat-list-item href="" routerLink="/administrativo">
                 <mat-icon>home</mat-icon>
                 <div>Administrativo</div>
             </a>
@@ -48,8 +48,6 @@
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
 
             </button>
-
-            <span class="titulo">Nome Componente</span>
 
             <app-user-info class="position-absolute top-50 end-0 translate-middle-y" [email]="email"></app-user-info>
         </mat-toolbar>

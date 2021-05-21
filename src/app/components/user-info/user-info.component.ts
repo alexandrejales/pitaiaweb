@@ -1,20 +1,26 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Login } from 'src/app/model/entity/login';
-import { Constante } from 'src/app/resource/contante';
+import { Router } from '@angular/router';
+import { AccountService } from 'src/app/account/shared/account.service';
+import { ToastService } from 'src/app/service/toast.service';
 
 @Component({
-  selector: 'app-user-info',
-  templateUrl: './user-info.component.html',
-  styleUrls: ['./user-info.component.scss']
+	selector: 'app-user-info',
+	templateUrl: './user-info.component.html',
+	styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
 
-  @Input()
-  email: string = '';
+	@Input()
+	email: string = '';
 
-  constructor() { }
+	constructor(private accountService: AccountService, private router: Router, private toastService: ToastService) { }
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
 
+	logout() {
+		this.accountService.logout();
+		this.toastService.openSeccessSnackBar("Logout realizado com sucesso");
+		window.location.reload();
+	}
 }
