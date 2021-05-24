@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Pessoa } from 'src/app/model/entity/pessoa';
+import { PessoaForm } from 'src/app/model/form/pessoa-form';
 
 @Component({
   selector: 'app-pessoa-form',
@@ -9,7 +10,7 @@ import { Pessoa } from 'src/app/model/entity/pessoa';
 export class PessoaFormComponent implements OnInit {
 
   @Input()
-  pessoa: Pessoa = new Pessoa;
+  pessoa: PessoaForm = new PessoaForm;
 
   constructor() {
   }

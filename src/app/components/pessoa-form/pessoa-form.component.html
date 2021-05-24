@@ -13,7 +13,7 @@
     <div class="col-sm-2">
         <mat-form-field appearance="outline">
             <mat-label>Idade</mat-label>
-            <input matInput type="number" [(ngModel)]="pessoa.idade" required>
+            <input matInput type="number" mask="000" [(ngModel)]="pessoa.idade" required>
             <button mat-button *ngIf="pessoa.idade" matSuffix mat-icon-button aria-label="Clear" (click)="pessoa.idade=0">
                 <mat-icon>close</mat-icon>
             </button>
@@ -33,7 +33,7 @@
     <div class="col-sm-4">
         <mat-form-field appearance="outline">
             <mat-label>CPF</mat-label>
-            <input matInput type="text" [(ngModel)]="pessoa.cpf" required>
+            <input matInput type="text" mask="000.000.000-00" [(ngModel)]="pessoa.cpf" required>
             <button mat-button *ngIf="pessoa.cpf" matSuffix mat-icon-button aria-label="Clear" (click)="pessoa.cpf=''">
                 <mat-icon>close</mat-icon>
             </button>

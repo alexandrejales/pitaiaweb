@@ -43,7 +43,7 @@
     <div class="col-sm-4">
         <mat-form-field appearance="outline">
             <mat-label>Cep</mat-label>
-            <input matInput type="text" [(ngModel)]="endereco.cep" required>
+            <input matInput type="text" mask="00000-000" [(ngModel)]="endereco.cep" required>
             <button mat-button *ngIf="endereco.cep" matSuffix mat-icon-button aria-label="Clear" (click)="endereco.cep=''">
                 <mat-icon>close</mat-icon>
             </button>

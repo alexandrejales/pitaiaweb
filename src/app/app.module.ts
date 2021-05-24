@@ -47,6 +47,11 @@ import { ListaUsuarioAdmComponent } from './pages/administrativo/lista-usuario-a
 import { PessoaFormComponent } from './components/pessoa-form/pessoa-form.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CadastroUsuarioAdmComponent } from './pages/administrativo/cadastro-usuario-adm/cadastro-usuario-adm.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+const maskConfig: Partial<IConfig> = {
+	validation: false,
+};
 
 @NgModule({
 	declarations: [
@@ -82,7 +87,7 @@ import { CadastroUsuarioAdmComponent } from './pages/administrativo/cadastro-usu
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		HttpClientModule,
-
+		NgxMaskModule.forRoot(maskConfig),
 		MatSliderModule,
 		LayoutModule,
 		MatToolbarModule,

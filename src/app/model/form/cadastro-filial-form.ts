@@ -1,10 +1,9 @@
-import { Endereco } from "./endereco";
+import { EnderecoForm } from "./endereco-form";
 
-export class Empresa {
-    id: number = 0;
+export class FilialForm {
     bloqueado: boolean = false;
     cnpj: string = '';
     inscricaoEstadual: string = '';
     nomeFantasia: string = '';
-    endereco: Endereco = new Endereco();
+    endereco: EnderecoForm = new EnderecoForm();
 }

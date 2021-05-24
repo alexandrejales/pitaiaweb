@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Endereco } from 'src/app/model/entity/endereco';
+import { EnderecoForm } from 'src/app/model/form/endereco-form';
 
 @Component({
 	selector: 'app-endereco-form',
@@ -9,7 +9,7 @@ import { Endereco } from 'src/app/model/entity/endereco';
 export class EnderecoFormComponent implements OnInit {
 
 	@Input()
-	endereco: Endereco = new Endereco;
+	endereco: EnderecoForm = new EnderecoForm;
 
 	constructor() {
 	}

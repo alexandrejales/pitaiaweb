@@ -1,10 +1,10 @@
-import { Empresa } from "./empresa";
+import { Filial } from "./filial";
 import { Usuario } from "./usuario";
 
 export class Colaborador {
     id: number = 0;
     bloqueado: boolean = false;
-    empresa: Empresa = new Empresa();
+    empresa: Filial = new Filial();
     usuario: Usuario = new Usuario();
     cargo: string = '';
     setor: string = '';

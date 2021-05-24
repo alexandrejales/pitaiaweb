@@ -5,8 +5,8 @@
     <div class="col-sm-4">
         <mat-form-field appearance="outline">
             <mat-label>CNPJ</mat-label>
-            <input matInput type="text" [(ngModel)]="empresa.cnpj" required>
-            <button mat-button *ngIf="empresa.cnpj" matSuffix mat-icon-button aria-label="Clear" (click)="empresa.cnpj=''">
+            <input matInput type="text" mask="000.000.000/0000-00" [(ngModel)]="filial.cnpj" required>
+            <button mat-button *ngIf="filial.cnpj" matSuffix mat-icon-button aria-label="Clear" (click)="filial.cnpj=''">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
@@ -14,8 +14,8 @@
     <div class="col-sm-8">
         <mat-form-field appearance="outline">
             <mat-label>Nome Fantasia</mat-label>
-            <input matInput type="text" [(ngModel)]="empresa.nomeFantasia" required>
-            <button mat-button *ngIf="empresa.nomeFantasia" matSuffix mat-icon-button aria-label="Clear" (click)="empresa.nomeFantasia=''">
+            <input matInput type="text" [(ngModel)]="filial.nomeFantasia" required>
+            <button mat-button *ngIf="filial.nomeFantasia" matSuffix mat-icon-button aria-label="Clear" (click)="filial.nomeFantasia=''">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
@@ -26,14 +26,14 @@
     <div class="col-sm-4">
         <mat-form-field appearance="outline">
             <mat-label>Inscrição Estadual</mat-label>
-            <input matInput type="text" [(ngModel)]="empresa.inscricaoEstadual" required>
-            <button mat-button *ngIf="empresa.inscricaoEstadual" matSuffix mat-icon-button aria-label="Clear" (click)="empresa.inscricaoEstadual=''">
+            <input matInput type="text" [(ngModel)]="filial.inscricaoEstadual" required>
+            <button mat-button *ngIf="filial.inscricaoEstadual" matSuffix mat-icon-button aria-label="Clear" (click)="filial.inscricaoEstadual=''">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
     </div>
     <div class="col-sm">
-        <mat-checkbox class="example-margin" [(ngModel)]="empresa.bloqueado">Bloqueado</mat-checkbox>
+        <mat-checkbox class="example-margin" [(ngModel)]="filial.bloqueado">Bloqueado</mat-checkbox>
     </div>
 </div>
 

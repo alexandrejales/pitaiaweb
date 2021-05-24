@@ -57,8 +57,6 @@ export class AccountService {
 	}
 
 	logout() {
-		//cancelar token
-		//Exluir localStorage
 		window.localStorage.removeItem(Constante.EMAIL);
 		window.localStorage.removeItem(Constante.TOKEN);
 	}

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Empresa } from 'src/app/model/entity/empresa';
 import { Endereco } from 'src/app/model/entity/endereco';
+import { Filial } from 'src/app/model/entity/filial';
 
-const EMPRESA_DATA: Empresa[] = [
+const EMPRESA_DATA: Filial[] = [
 	{ id: 1, bloqueado: false, cnpj: '23.29.268/0001-33', nomeFantasia: 'Filial 1', inscricaoEstadual: '28452649', endereco: new Endereco },
 	{ id: 2, bloqueado: false, cnpj: '23.29.268/0001-33', nomeFantasia: 'Filial 2', inscricaoEstadual: '28452649', endereco: new Endereco },
 	{ id: 3, bloqueado: false, cnpj: '23.29.268/0001-33', nomeFantasia: 'Filial 3', inscricaoEstadual: '28452649', endereco: new Endereco },
@@ -30,13 +30,13 @@ export class ListaFilialComponent implements OnInit {
 
 	applyFilter(event: Event) {
 		console.log("chamou");
-		let res: Empresa[] = this.dataSource.filter(this.dataFiltro);
+		let res: Filial[] = this.dataSource.filter(this.dataFiltro);
 		console.log(res);
 		//this.dataSource.filter = filterValue.trim().toLowerCase();
 
 	}
 
-	dataFiltro(element: Empresa, index: number, array: Empresa[]) {
+	dataFiltro(element: Filial, index: number, array: Filial[]) {
 		console.log(this.filtroValor);
 		let filtro: string = this.filtroValor.trim().toLowerCase();
 		console.log("Filtro: " + filtro);
