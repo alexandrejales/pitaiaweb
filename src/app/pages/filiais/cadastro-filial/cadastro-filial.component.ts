@@ -24,29 +24,35 @@ export class CadastroFilialComponent implements OnInit {
 		console.log(this.idFilial);
 
 		if (!(this.idFilial === undefined)) {
-			this.filialService.findById(this.idFilial).subscribe(
-				{
-					next: data => {
-						this.filialDto = data;
-					},
-					error: () => {
-						this.router.navigate(['/filiais']);
-						this.toastService.openAlertSnackBar("Filial não encontrada");
-					}
-				}
-			);
+			this.onFindById(this.idFilial);
 		}
 	}
 
+	onFindById(id: number) {
+		this.filialService.findById(id).subscribe(
+			{
+				next: data => {
+					this.filialDto = data;
+				},
+				error: error => {
+					//Imprime erro da exception da API
+					this.toastService.openAlertSnackBar(error.error);
+					this.router.navigate(['/filiais']);
+				}
+			}
+		);
+	}
+
 	onSubmit() {
-		console.log(this.filialDto);
-		//Chamada ao servidor para autenticar
 		this.filialService.create(this.filialDto).subscribe(
 			{
 				next: data => {
 					console.log(data);
 					this.toastService.openSeccessSnackBar("Filial Cadastrada com sucesso");
 					this.router.navigate(['/filiais/cadastro/', data.id]);
+				},
+				error: error => {
+					this.toastService.openAlertSnackBar(error.error);
 				}
 			}
 		)
@@ -54,18 +60,18 @@ export class CadastroFilialComponent implements OnInit {
 
 	onDelete() {
 		if (this.idFilial != undefined) {
-			//Delete
-		}
-	}
-
-	testeGet() {
-		console.log("Teste");
-		this.filialService.teste().subscribe(
-			{
-				next: data => {
-					console.log(data);
+			this.filialService.delete(this.idFilial).subscribe(
+				{
+					next: data => {
+						this.toastService.openSeccessSnackBar("Filial deletada com sucesso");
+						this.router.navigate(['/filiais']);
+					},
+					error: error => {
+						this.toastService.openAlertSnackBar(error.error);
+					}
 				}
-			}
-		)
+
+			)
+		}
 	}
 }

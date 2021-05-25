@@ -53,6 +53,9 @@ export class LoginComponent implements OnInit {
 
 					this.toastService.openSeccessSnackBar("Bem vindo " + payloadJWT.email);
 					this.router.navigate(['/']);
+				},
+				error: () => {
+					this.toastService.openSeccessSnackBar("Falha interna ao realizar Login, tente em alguns instantes");
 				}
 			}
 		)

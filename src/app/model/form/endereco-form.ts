@@ -1,4 +1,5 @@
 export class EnderecoForm {
+    id?: number;
     rua: string = '';
     numero: string = '';
     bairro: string = '';

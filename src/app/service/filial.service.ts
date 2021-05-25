@@ -1,10 +1,9 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { FilialDto } from '../model/dto/filial-dto';
 import { Filial } from '../model/entity/filial';
-import { FilialForm } from '../model/form/cadastro-filial-form';
 import { Library } from '../resource/library';
 import { ToastService } from './toast.service';
 
@@ -29,22 +28,18 @@ export class FilialService {
 			)
 	}
 
-	teste(): Observable<string> {
-		return this.httpClient.get<string>(Library.API_URL + '/teste')
-			.pipe(
-				catchError(this.handleError)
-			)
+	delete(idFilial: number): Observable<any> {
+		return this.httpClient.delete(Library.API_URL + '/filiais/' + idFilial);
 	}
 
 	// Manipulação de erros
 	handleError(error: HttpErrorResponse) {
-		if (error.error instanceof ErrorEvent) {
-			// Erro ocorreu no lado do client
-			this.toastService.openSeccessSnackBar(error.error.message);
+		if (error instanceof ErrorEvent) {
+			console.log("Erro Angular");
+			//this.toastService.openSeccessSnackBar(error.error);
 		} else {
-			this.toastService.openSeccessSnackBar(error.error.toString());
+			console.log("Erro Api");
 		}
-		console.log(error.error);
 		return throwError(error);
 	};
 }
