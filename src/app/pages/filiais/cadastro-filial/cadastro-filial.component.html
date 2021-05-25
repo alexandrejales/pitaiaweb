@@ -5,8 +5,8 @@
     <div class="col-sm-4">
         <mat-form-field appearance="outline">
             <mat-label>CNPJ</mat-label>
-            <input matInput type="text" mask="000.000.000/0000-00" [(ngModel)]="filial.cnpj" required>
-            <button mat-button *ngIf="filial.cnpj" matSuffix mat-icon-button aria-label="Clear" (click)="filial.cnpj=''">
+            <input matInput type="text" mask="00.000.000/0000-00" [(ngModel)]="filialDto.filialForm.cnpj" required>
+            <button mat-button *ngIf="filialDto.filialForm.cnpj" matSuffix mat-icon-button aria-label="Clear" (click)="filialDto.filialForm.cnpj=''">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
@@ -14,8 +14,8 @@
     <div class="col-sm-8">
         <mat-form-field appearance="outline">
             <mat-label>Nome Fantasia</mat-label>
-            <input matInput type="text" [(ngModel)]="filial.nomeFantasia" required>
-            <button mat-button *ngIf="filial.nomeFantasia" matSuffix mat-icon-button aria-label="Clear" (click)="filial.nomeFantasia=''">
+            <input matInput type="text" [(ngModel)]="filialDto.filialForm.razaoSocial" required>
+            <button mat-button *ngIf="filialDto.filialForm.razaoSocial" matSuffix mat-icon-button aria-label="Clear" (click)="filialDto.filialForm.razaoSocial=''">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
@@ -26,18 +26,19 @@
     <div class="col-sm-4">
         <mat-form-field appearance="outline">
             <mat-label>Inscrição Estadual</mat-label>
-            <input matInput type="text" [(ngModel)]="filial.inscricaoEstadual" required>
-            <button mat-button *ngIf="filial.inscricaoEstadual" matSuffix mat-icon-button aria-label="Clear" (click)="filial.inscricaoEstadual=''">
+            <input matInput type="text" [(ngModel)]="filialDto.filialForm.inscricaoEstadual" required>
+            <button mat-button *ngIf="filialDto.filialForm.inscricaoEstadual" matSuffix mat-icon-button aria-label="Clear" (click)="filialDto.filialForm.inscricaoEstadual=''">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
     </div>
     <div class="col-sm">
-        <mat-checkbox class="example-margin" [(ngModel)]="filial.bloqueado">Bloqueado</mat-checkbox>
+        <mat-checkbox class="example-margin" [(ngModel)]="filialDto.filialForm.bloqueado">Bloqueado</mat-checkbox>
     </div>
 </div>
 
-<app-endereco-form [endereco]="endereco"></app-endereco-form>
+<app-endereco-form [endereco]="filialDto.enderecoForm"></app-endereco-form>
 
 <button mat-raised-button type="button" color="primary" (click)="onSubmit()">Salvar</button>
 <button mat-raised-button type="button" color="accent" [routerLink]=" ['/filiais'] ">Voltar</button>
+<button mat-raised-button type="button" color="warn" [hidden]="idFilial === undefined? true:false" (click)="onDelete()">Deletar</button>

@@ -10,11 +10,15 @@ import { LoginForm } from 'src/app/model/form/login-form';
 import { Constante } from 'src/app/resource/contante';
 import { Library } from 'src/app/resource/library';
 import { ToastService } from 'src/app/service/toast.service';
+import jwt_decode from 'jwt-decode';
+import { PayloadJWT } from 'src/app/model/dto/payload-jwt';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AccountService {
+
+	public: String = '';
 
 	httpOptions = {
 		headers: new HttpHeaders({
@@ -57,8 +61,15 @@ export class AccountService {
 	}
 
 	logout() {
-		window.localStorage.removeItem(Constante.EMAIL);
-		window.localStorage.removeItem(Constante.TOKEN);
+		window.localStorage.clear();
+	}
+
+	public decodePayloadJWT(token: string): PayloadJWT {
+		try {
+			return jwt_decode(token);
+		} catch (Error) {
+			return new PayloadJWT;
+		}
 	}
 
 	// Manipulação de erros

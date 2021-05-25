@@ -3,13 +3,13 @@ import { Endereco } from 'src/app/model/entity/endereco';
 import { Filial } from 'src/app/model/entity/filial';
 
 const EMPRESA_DATA: Filial[] = [
-	{ id: 1, bloqueado: false, cnpj: '23.29.268/0001-33', nomeFantasia: 'Filial 1', inscricaoEstadual: '28452649', endereco: new Endereco },
-	{ id: 2, bloqueado: false, cnpj: '23.29.268/0001-33', nomeFantasia: 'Filial 2', inscricaoEstadual: '28452649', endereco: new Endereco },
-	{ id: 3, bloqueado: false, cnpj: '23.29.268/0001-33', nomeFantasia: 'Filial 3', inscricaoEstadual: '28452649', endereco: new Endereco },
-	{ id: 4, bloqueado: false, cnpj: '23.29.268/0001-33', nomeFantasia: 'Filial 4', inscricaoEstadual: '28452649', endereco: new Endereco },
-	{ id: 5, bloqueado: true, cnpj: '23.29.268/0001-33', nomeFantasia: 'Filial 5', inscricaoEstadual: '28452649', endereco: new Endereco },
-	{ id: 6, bloqueado: false, cnpj: '23.29.268/0001-33', nomeFantasia: 'Filial 6', inscricaoEstadual: '28452649', endereco: new Endereco },
-	{ id: 7, bloqueado: false, cnpj: '23.29.268/0001-33', nomeFantasia: 'Filial 7', inscricaoEstadual: '28452649', endereco: new Endereco },
+	{ id: 1, bloqueado: false, cnpj: '23.29.268/0001-33', razaoSocial: 'Filial 1', inscricaoEstadual: '28452649', endereco: new Endereco },
+	{ id: 2, bloqueado: false, cnpj: '23.29.268/0001-33', razaoSocial: 'Filial 2', inscricaoEstadual: '28452649', endereco: new Endereco },
+	{ id: 3, bloqueado: false, cnpj: '23.29.268/0001-33', razaoSocial: 'Filial 3', inscricaoEstadual: '28452649', endereco: new Endereco },
+	{ id: 4, bloqueado: false, cnpj: '23.29.268/0001-33', razaoSocial: 'Filial 4', inscricaoEstadual: '28452649', endereco: new Endereco },
+	{ id: 5, bloqueado: true, cnpj: '23.29.268/0001-33', razaoSocial: 'Filial 5', inscricaoEstadual: '28452649', endereco: new Endereco },
+	{ id: 6, bloqueado: false, cnpj: '23.29.268/0001-33', razaoSocial: 'Filial 6', inscricaoEstadual: '28452649', endereco: new Endereco },
+	{ id: 7, bloqueado: false, cnpj: '23.29.268/0001-33', razaoSocial: 'Filial 7', inscricaoEstadual: '28452649', endereco: new Endereco },
 ];
 
 @Component({
@@ -19,7 +19,7 @@ const EMPRESA_DATA: Filial[] = [
 })
 export class ListaFilialComponent implements OnInit {
 
-	displayedColumns: string[] = ['id', 'bloqueado', 'cnpj', 'nomeFantasia', 'inscricaoEstadual', 'acao'];
+	displayedColumns: string[] = ['id', 'bloqueado', 'cnpj', 'razaoSocial', 'inscricaoEstadual', 'acao'];
 	dataSource = EMPRESA_DATA;
 	filtroValor: string = '';
 
@@ -48,7 +48,7 @@ export class ListaFilialComponent implements OnInit {
 			return true;
 		}
 
-		if (element.nomeFantasia.toLowerCase().includes(filtro)) {
+		if (element.razaoSocial.toLowerCase().includes(filtro)) {
 			return true;
 		}
 

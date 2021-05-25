@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,6 +48,7 @@ import { PessoaFormComponent } from './components/pessoa-form/pessoa-form.compon
 import { MatNativeDateModule } from '@angular/material/core';
 import { CadastroUsuarioAdmComponent } from './pages/administrativo/cadastro-usuario-adm/cadastro-usuario-adm.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { AuthInterceptor } from './auth.interceptor';
 
 const maskConfig: Partial<IConfig> = {
 	validation: false,
@@ -105,7 +106,7 @@ const maskConfig: Partial<IConfig> = {
 		MatNativeDateModule,
 		MatMenuModule,
 	],
-	providers: [],
+	providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

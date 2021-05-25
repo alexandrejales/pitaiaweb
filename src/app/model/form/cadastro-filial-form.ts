@@ -4,6 +4,5 @@ export class FilialForm {
     bloqueado: boolean = false;
     cnpj: string = '';
     inscricaoEstadual: string = '';
-    nomeFantasia: string = '';
-    endereco: EnderecoForm = new EnderecoForm();
+    razaoSocial: string = '';
 }

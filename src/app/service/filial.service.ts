@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { FilialDto } from '../model/dto/filial-dto';
 import { Filial } from '../model/entity/filial';
 import { FilialForm } from '../model/form/cadastro-filial-form';
 import { Library } from '../resource/library';
@@ -12,43 +13,38 @@ import { ToastService } from './toast.service';
 })
 export class FilialService {
 
-	httpOptions = {
-		headers: new HttpHeaders({
-			'Content-Type': 'application/json'
-		}),
-	};
-
 	constructor(private httpClient: HttpClient, private toastService: ToastService) { }
 
-	create(loginForm: FilialForm): Observable<Filial> {
-
-		return this.httpClient.post<Filial>(Library.API_URL + '/auth', loginForm, this.httpOptions)
+	findById(idFilial: number): Observable<FilialDto> {
+		return this.httpClient.get<FilialDto>(Library.API_URL + '/filiais/' + idFilial)
 			.pipe(
 				catchError(this.handleError)
 			)
 	}
 
+	create(filialDto: FilialDto): Observable<Filial> {
+		return this.httpClient.post<Filial>(Library.API_URL + '/filiais', filialDto)
+			.pipe(
+				catchError(this.handleError)
+			)
+	}
+
+	teste(): Observable<string> {
+		return this.httpClient.get<string>(Library.API_URL + '/teste')
+			.pipe(
+				catchError(this.handleError)
+			)
+	}
 
 	// Manipulação de erros
 	handleError(error: HttpErrorResponse) {
-
-		if (error.status == 403) {
-			console.log("Email ou senha inválidos.");
-			let msg: string = error.error.mensagem;
-
-			this.toastService.openAlertSnackBar("Deu Erro");
-			return throwError(error.error.mensagem);
+		if (error.error instanceof ErrorEvent) {
+			// Erro ocorreu no lado do client
+			this.toastService.openSeccessSnackBar(error.error.message);
 		} else {
-			let errorMessage = '';
-			if (error.error instanceof ErrorEvent) {
-				// Erro ocorreu no lado do client
-				errorMessage = error.error.message;
-			} else {
-
-				errorMessage = 'Código do erro: ' + error.status + ' Menssagem: ' + error.message;
-			}
-			console.log(errorMessage);
-			return throwError(errorMessage);
+			this.toastService.openSeccessSnackBar(error.error.toString());
 		}
+		console.log(error.error);
+		return throwError(error);
 	};
 }

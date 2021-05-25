@@ -5,4 +5,6 @@ export class EnderecoForm {
     cidade: string = '';
     cep: string = '';
     complemento: string = '';
+    estado: string = '';
+    pais: string = '';
 }

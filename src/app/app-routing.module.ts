@@ -29,11 +29,11 @@ const routes: Routes = [
 
 			{ path: 'filiais', component: ListaFilialComponent },
 			{ path: 'filiais/cadastro', component: CadastroFilialComponent },
-			{ path: 'filiais/cadastro/:id', component: CadastroFilialComponent },
+			{ path: 'filiais/cadastro/:idFilial', component: CadastroFilialComponent },
 
 			{ path: 'administrativo', component: ListaUsuarioAdmComponent },
 			{ path: 'administrativo/cadastro', component: CadastroUsuarioAdmComponent },
-			{ path: 'administrativo/cadastro/:id', component: CadastroUsuarioAdmComponent },
+			{ path: 'administrativo/cadastro/:idUsuario', component: CadastroUsuarioAdmComponent },
 		],
 		canActivate: [AuthGuard]
 	},

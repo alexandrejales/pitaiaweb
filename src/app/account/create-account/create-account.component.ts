@@ -22,7 +22,7 @@ export class CreateAccountComponent implements OnInit {
     //Cria Nova Conta
     onSubmit(form: NgForm) {
         this.accountService.createAccount(this.criarContaForm).subscribe(
-            () => this.router.navigateByUrl('')
+            () => this.router.navigate(['/'])
         );
     }
 

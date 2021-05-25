@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from 'src/app/service/toast.service';
-import { EnderecoForm } from 'src/app/model/form/endereco-form';
-import { FilialForm } from 'src/app/model/form/cadastro-filial-form';
+import { FilialService } from 'src/app/service/filial.service';
+import { FilialDto } from 'src/app/model/dto/filial-dto';
 
 @Component({
 	selector: 'app-cadastro-filial',
@@ -11,23 +11,61 @@ import { FilialForm } from 'src/app/model/form/cadastro-filial-form';
 	styleUrls: ['./cadastro-filial.component.scss']
 })
 export class CadastroFilialComponent implements OnInit {
+	filialDto: FilialDto = new FilialDto;
+	idFilial?: number;
 
-	filial: FilialForm = new FilialForm;
-	endereco: EnderecoForm = new EnderecoForm;
-
-	constructor(private http: HttpClient, private router: Router, private toastService: ToastService) {
-
+	constructor(private http: HttpClient, private router: Router,
+		private toastService: ToastService, private filialService: FilialService,
+		private activatedRoute: ActivatedRoute) {
 	}
 
 	ngOnInit(): void {
-		//Verificar se rota tem parametro de id para carregar componente
+		this.idFilial = this.activatedRoute.snapshot.params.idFilial;
+		console.log(this.idFilial);
+
+		if (!(this.idFilial === undefined)) {
+			this.filialService.findById(this.idFilial).subscribe(
+				{
+					next: data => {
+						this.filialDto = data;
+					},
+					error: () => {
+						this.router.navigate(['/filiais']);
+						this.toastService.openAlertSnackBar("Filial não encontrada");
+					}
+				}
+			);
+		}
 	}
 
 	onSubmit() {
-		console.log(this.filial);
-		console.log(this.endereco);
-		console.log("Teste de button");
-		this.toastService.openSeccessSnackBar("Filial cadastrada com sucesso");
-		this.router.navigateByUrl('/filiais');
+		console.log(this.filialDto);
+		//Chamada ao servidor para autenticar
+		this.filialService.create(this.filialDto).subscribe(
+			{
+				next: data => {
+					console.log(data);
+					this.toastService.openSeccessSnackBar("Filial Cadastrada com sucesso");
+					this.router.navigate(['/filiais/cadastro/', data.id]);
+				}
+			}
+		)
+	}
+
+	onDelete() {
+		if (this.idFilial != undefined) {
+			//Delete
+		}
+	}
+
+	testeGet() {
+		console.log("Teste");
+		this.filialService.teste().subscribe(
+			{
+				next: data => {
+					console.log(data);
+				}
+			}
+		)
 	}
 }
