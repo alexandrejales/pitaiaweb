@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { ToastService } from 'src/app/service/toast.service';
 import { FilialService } from 'src/app/service/filial.service';
 import { FilialDto } from 'src/app/model/dto/filial-dto';
@@ -14,14 +13,13 @@ export class CadastroFilialComponent implements OnInit {
 	filialDto: FilialDto = new FilialDto;
 	idFilial?: number;
 
-	constructor(private http: HttpClient, private router: Router,
+	constructor(private router: Router,
 		private toastService: ToastService, private filialService: FilialService,
 		private activatedRoute: ActivatedRoute) {
 	}
 
 	ngOnInit(): void {
 		this.idFilial = this.activatedRoute.snapshot.params.idFilial;
-		console.log(this.idFilial);
 
 		if (!(this.idFilial === undefined)) {
 			this.onFindById(this.idFilial);
@@ -43,13 +41,32 @@ export class CadastroFilialComponent implements OnInit {
 		);
 	}
 
-	onSubmit() {
+	onSave() {
+		if (this.idFilial === undefined) {
+			this.onCreate();
+		} else {
+			this.onUpdate();
+		}
+	}
+	onCreate() {
 		this.filialService.create(this.filialDto).subscribe(
 			{
 				next: data => {
-					console.log(data);
-					this.toastService.openSeccessSnackBar("Filial Cadastrada com sucesso");
+					this.toastService.openSeccessSnackBar("Filial cadastrada com sucesso");
 					this.router.navigate(['/filiais/cadastro/', data.id]);
+				},
+				error: error => {
+					this.toastService.openAlertSnackBar(error.error);
+				}
+			}
+		)
+	}
+
+	onUpdate() {
+		this.filialService.update(this.filialDto).subscribe(
+			{
+				next: data => {
+					this.toastService.openSeccessSnackBar("Filial atualizada com sucesso");
 				},
 				error: error => {
 					this.toastService.openAlertSnackBar(error.error);

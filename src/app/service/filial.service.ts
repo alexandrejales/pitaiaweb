@@ -5,14 +5,13 @@ import { catchError } from 'rxjs/operators';
 import { FilialDto } from '../model/dto/filial-dto';
 import { Filial } from '../model/entity/filial';
 import { Library } from '../resource/library';
-import { ToastService } from './toast.service';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class FilialService {
 
-	constructor(private httpClient: HttpClient, private toastService: ToastService) { }
+	constructor(private httpClient: HttpClient) { }
 
 	findById(idFilial: number): Observable<FilialDto> {
 		return this.httpClient.get<FilialDto>(Library.API_URL + '/filiais/' + idFilial)
@@ -21,8 +20,22 @@ export class FilialService {
 			)
 	}
 
+	findAll(): Observable<FilialDto[]> {
+		return this.httpClient.get<FilialDto[]>(Library.API_URL + '/filiais')
+			.pipe(
+				catchError(this.handleError)
+			)
+	}
+
 	create(filialDto: FilialDto): Observable<Filial> {
 		return this.httpClient.post<Filial>(Library.API_URL + '/filiais', filialDto)
+			.pipe(
+				catchError(this.handleError)
+			)
+	}
+
+	update(filialDto: FilialDto): Observable<FilialDto> {
+		return this.httpClient.put<FilialDto>(Library.API_URL + '/filiais/' + filialDto.filialForm.id, filialDto)
 			.pipe(
 				catchError(this.handleError)
 			)

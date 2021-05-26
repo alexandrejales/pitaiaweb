@@ -23,8 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MenuComponent } from './layout/menu/menu.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { ColaboradorCadastroComponent } from './pages/colaborador-cadastro/colaborador-cadastro.component';
-import { ColaboradorListarComponent } from './pages/colaborador-listar/colaborador-listar.component';
+import { ColaboradorCadastroComponent } from './pages/colaborador/colaborador-cadastro/colaborador-cadastro.component';
+import { ColaboradorListarComponent } from './pages/colaborador/colaborador-listar/colaborador-listar.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -49,6 +49,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { CadastroUsuarioAdmComponent } from './pages/administrativo/cadastro-usuario-adm/cadastro-usuario-adm.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { AuthInterceptor } from './auth.interceptor';
+import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
+import { CadastroUsuarioComponent } from './pages/usuarios/cadastro-usuario/cadastro-usuario.component';
+import { ListarUsuarioComponent } from './pages/usuarios/listar-usuario/listar-usuario.component';
 
 const maskConfig: Partial<IConfig> = {
 	validation: false,
@@ -81,6 +84,9 @@ const maskConfig: Partial<IConfig> = {
 		ListaUsuarioAdmComponent,
 		PessoaFormComponent,
 		CadastroUsuarioAdmComponent,
+		UsuarioFormComponent,
+		CadastroUsuarioComponent,
+		ListarUsuarioComponent,
 	],
 	imports: [
 		FormsModule,

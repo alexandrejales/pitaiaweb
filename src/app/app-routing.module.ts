@@ -7,11 +7,13 @@ import { AuthenticationComponent } from './layout/authentication/authentication.
 import { MenuComponent } from './layout/menu/menu.component';
 import { CadastroUsuarioAdmComponent } from './pages/administrativo/cadastro-usuario-adm/cadastro-usuario-adm.component';
 import { ListaUsuarioAdmComponent } from './pages/administrativo/lista-usuario-adm/lista-usuario-adm.component';
-import { ColaboradorCadastroComponent } from './pages/colaborador-cadastro/colaborador-cadastro.component';
-import { ColaboradorListarComponent } from './pages/colaborador-listar/colaborador-listar.component';
+import { ColaboradorCadastroComponent } from './pages/colaborador/colaborador-cadastro/colaborador-cadastro.component';
+import { ColaboradorListarComponent } from './pages/colaborador/colaborador-listar/colaborador-listar.component';
 import { DashboardHomeComponent } from './pages/dashboard-home/dashboard-home.component';
 import { CadastroFilialComponent } from './pages/filiais/cadastro-filial/cadastro-filial.component';
 import { ListaFilialComponent } from './pages/filiais/lista-filial/lista-filial.component';
+import { CadastroUsuarioComponent } from './pages/usuarios/cadastro-usuario/cadastro-usuario.component';
+import { ListarUsuarioComponent } from './pages/usuarios/listar-usuario/listar-usuario.component';
 import { TaskFormComponent } from './task/task-form/task-form.component';
 import { TaskListComponent } from './task/task-list/task-list.component';
 
@@ -34,6 +36,11 @@ const routes: Routes = [
 			{ path: 'administrativo', component: ListaUsuarioAdmComponent },
 			{ path: 'administrativo/cadastro', component: CadastroUsuarioAdmComponent },
 			{ path: 'administrativo/cadastro/:idUsuario', component: CadastroUsuarioAdmComponent },
+
+			{ path: 'usuarios', component: ListarUsuarioComponent },
+			{ path: 'usuarios/cadastro', component: CadastroUsuarioComponent },
+			{ path: 'usuarios/cadastro/:idUsuario', component: CadastroUsuarioComponent },
+
 		],
 		canActivate: [AuthGuard]
 	},
