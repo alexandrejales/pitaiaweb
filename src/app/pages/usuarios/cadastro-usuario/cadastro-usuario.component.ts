@@ -53,8 +53,8 @@ export class CadastroUsuarioComponent implements OnInit {
 		this.usuarioService.create(this.usuarioForm).subscribe(
 			{
 				next: data => {
-					this.toastService.openSeccessSnackBar("Usuários cadastrado com sucesso");
-					this.router.navigate(['/usuarios/cadastro/', data.infoAcessoForm?.id]);
+					this.toastService.openSeccessSnackBar("Usuário cadastrado com sucesso");
+					this.router.navigate(['/usuarios/cadastro/', data.infoAcessoForm.id]);
 				},
 				error: error => {
 					this.toastService.openAlertSnackBar(error.error);

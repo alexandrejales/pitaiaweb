@@ -1,22 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioDto } from 'src/app/model/dto/usuario-dto';
+import { UsuarioForm } from 'src/app/model/form/usuario-form';
+import { ToastService } from 'src/app/service/toast.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
-  selector: 'app-listar-usuario',
-  templateUrl: './listar-usuario.component.html',
-  styleUrls: ['./listar-usuario.component.scss']
+	selector: 'app-listar-usuario',
+	templateUrl: './listar-usuario.component.html',
+	styleUrls: ['./listar-usuario.component.scss']
 })
 export class ListarUsuarioComponent implements OnInit {
 
-  displayedColumns: string[] = ['item', 'nome', 'email', 'tipo', 'perfil', 'acao'];
-  usuariosDtoList: UsuarioDto[] = [];
-  index: number = 0;
+	displayedColumns: string[] = ['item', 'nome', 'email', 'tipo', 'bloqueado', 'acao'];
+	usuarioFormList: UsuarioForm[] = [];
+	index: number = 0;
 
-  usuarioDto: UsuarioDto = new UsuarioDto;
+	constructor(private usuarioService: UsuarioService, private toastService: ToastService) { }
 
-  constructor() { }
+	ngOnInit(): void {
+		this.onFindAll();
+	}
 
-  ngOnInit(): void {
-  }
-
+	onFindAll() {
+		this.usuarioService.findAll().subscribe(
+			{
+				next: data => {
+					this.usuarioFormList = data;
+				},
+				error: error => {
+					//Imprime erro da exception da API
+					this.toastService.openAlertSnackBar("Erro ao carregar os dados");
+				}
+			}
+		);
+	}
 }

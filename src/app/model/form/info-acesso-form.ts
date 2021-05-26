@@ -1,7 +1,8 @@
 export class InfoAcessoForm {
-    id: number = 0;
+    id?: number;
     nome: string = '';
     email: string = '';
     senha: string = '';
     tipo: string = '';
+    bloqueado: boolean = false;
 }

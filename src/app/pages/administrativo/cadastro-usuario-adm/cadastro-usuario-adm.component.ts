@@ -20,7 +20,6 @@ export class CadastroUsuarioAdmComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.log(this.usuario);
 	}
 
 }
