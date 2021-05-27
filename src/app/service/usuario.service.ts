@@ -2,7 +2,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Filial } from '../model/entity/filial';
 import { UsuarioForm } from '../model/form/usuario-form';
 import { Library } from '../resource/library';
 
@@ -28,7 +27,6 @@ export class UsuarioService {
 	}
 
 	create(usuarioForm: UsuarioForm): Observable<UsuarioForm> {
-		console.log("Chamou create api");
 		return this.httpClient.post<UsuarioForm>(Library.API_URL + '/usuarios', usuarioForm)
 			.pipe(
 				catchError(this.handleError)
@@ -36,7 +34,6 @@ export class UsuarioService {
 	}
 
 	update(usuarioForm: UsuarioForm): Observable<UsuarioForm> {
-		console.log("Chamou api Update")
 		return this.httpClient.put<UsuarioForm>(Library.API_URL + '/usuarios/' + usuarioForm.infoAcessoForm?.id, usuarioForm)
 			.pipe(
 				catchError(this.handleError)

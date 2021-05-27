@@ -9,7 +9,7 @@ import { SuccessSnackBarComponent } from '../layout/toast/success-snack-bar/succ
 })
 export class ToastService {
 
-	private time: number = 3000;
+	private time: number = 5000;
 
 	constructor(private _snackBar: MatSnackBar) { }
 

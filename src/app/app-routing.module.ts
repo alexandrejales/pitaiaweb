@@ -26,8 +26,10 @@ const routes: Routes = [
 			{ path: 'tasklist', component: TaskListComponent },
 			{ path: 'new', component: TaskFormComponent },
 			{ path: 'edit/:id', component: TaskFormComponent },
-			{ path: 'colaborador', component: ColaboradorListarComponent },
-			{ path: 'colaborador/cadastro', component: ColaboradorCadastroComponent },
+
+			{ path: 'colaboradores', component: ColaboradorListarComponent },
+			{ path: 'colaboradores/cadastro', component: ColaboradorCadastroComponent },
+			{ path: 'colaboradores/cadastro/:idColaborador', component: ColaboradorCadastroComponent },
 
 			{ path: 'filiais', component: ListaFilialComponent },
 			{ path: 'filiais/cadastro', component: CadastroFilialComponent },
