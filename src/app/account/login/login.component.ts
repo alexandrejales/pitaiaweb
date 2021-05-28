@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { LoginForm } from 'src/app/model/form/login-form';
 import { ToastService } from 'src/app/service/toast.service';
 import { Constante } from 'src/app/resource/contante';
-import { Library } from 'src/app/resource/library';
 import { PayloadJWT } from 'src/app/model/dto/payload-jwt';
 
 
@@ -22,10 +21,6 @@ export class LoginComponent implements OnInit {
 	hide: boolean = true;
 
 	constructor(private http: HttpClient, private accountService: AccountService, private router: Router, private toastService: ToastService) {
-	}
-
-	openSnackBar() {
-		this.toastService.openSeccessSnackBar("Ola Alexandre");
 	}
 
 	ngOnInit(): void {

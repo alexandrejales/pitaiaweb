@@ -4,9 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TaskListComponent } from './task/task-list/task-list.component';
-import { TaskListItemComponent } from './task/task-list-item/task-list-item.component';
-import { TaskFormComponent } from './task/task-form/task-form.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './account/login/login.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
@@ -52,6 +49,11 @@ import { AuthInterceptor } from './auth.interceptor';
 import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
 import { CadastroUsuarioComponent } from './pages/usuarios/cadastro-usuario/cadastro-usuario.component';
 import { ListarUsuarioComponent } from './pages/usuarios/listar-usuario/listar-usuario.component';
+import { DispositivoCadastroComponent } from './pages/dispositivos/dispositivo-cadastro/dispositivo-cadastro.component';
+import { DispositivoListarComponent } from './pages/dispositivos/dispositivo-listar/dispositivo-listar.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatBadgeModule } from '@angular/material/badge';
+import { TesteComponent } from './teste/teste.component';
 
 const maskConfig: Partial<IConfig> = {
 	validation: false,
@@ -60,9 +62,6 @@ const maskConfig: Partial<IConfig> = {
 @NgModule({
 	declarations: [
 		AppComponent,
-		TaskListComponent,
-		TaskListItemComponent,
-		TaskFormComponent,
 		CreateAccountComponent,
 		HomeComponent,
 		AuthenticationComponent,
@@ -87,6 +86,9 @@ const maskConfig: Partial<IConfig> = {
 		UsuarioFormComponent,
 		CadastroUsuarioComponent,
 		ListarUsuarioComponent,
+		DispositivoCadastroComponent,
+		DispositivoListarComponent,
+  TesteComponent,
 	],
 	imports: [
 		FormsModule,
@@ -111,6 +113,8 @@ const maskConfig: Partial<IConfig> = {
 		MatTableModule,
 		MatNativeDateModule,
 		MatMenuModule,
+		MatCardModule,
+		MatBadgeModule,
 	],
 	providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
 	bootstrap: [AppComponent]

@@ -10,22 +10,21 @@ import { ListaUsuarioAdmComponent } from './pages/administrativo/lista-usuario-a
 import { ColaboradorCadastroComponent } from './pages/colaborador/colaborador-cadastro/colaborador-cadastro.component';
 import { ColaboradorListarComponent } from './pages/colaborador/colaborador-listar/colaborador-listar.component';
 import { DashboardHomeComponent } from './pages/dashboard-home/dashboard-home.component';
+import { DispositivoCadastroComponent } from './pages/dispositivos/dispositivo-cadastro/dispositivo-cadastro.component';
+import { DispositivoListarComponent } from './pages/dispositivos/dispositivo-listar/dispositivo-listar.component';
 import { CadastroFilialComponent } from './pages/filiais/cadastro-filial/cadastro-filial.component';
 import { ListaFilialComponent } from './pages/filiais/lista-filial/lista-filial.component';
 import { CadastroUsuarioComponent } from './pages/usuarios/cadastro-usuario/cadastro-usuario.component';
 import { ListarUsuarioComponent } from './pages/usuarios/listar-usuario/listar-usuario.component';
-import { TaskFormComponent } from './task/task-form/task-form.component';
-import { TaskListComponent } from './task/task-list/task-list.component';
+import { TesteComponent } from './teste/teste.component';
 
 const routes: Routes = [
+	{ path: 'teste', component: TesteComponent },
 	{
 		path: '',
 		component: MenuComponent,
 		children: [
 			{ path: '', component: DashboardHomeComponent },
-			{ path: 'tasklist', component: TaskListComponent },
-			{ path: 'new', component: TaskFormComponent },
-			{ path: 'edit/:id', component: TaskFormComponent },
 
 			{ path: 'colaboradores', component: ColaboradorListarComponent },
 			{ path: 'colaboradores/cadastro', component: ColaboradorCadastroComponent },
@@ -42,6 +41,10 @@ const routes: Routes = [
 			{ path: 'usuarios', component: ListarUsuarioComponent },
 			{ path: 'usuarios/cadastro', component: CadastroUsuarioComponent },
 			{ path: 'usuarios/cadastro/:idUsuario', component: CadastroUsuarioComponent },
+
+			{ path: 'dispositivos', component: DispositivoListarComponent },
+			{ path: 'dispositivos/cadastro', component: DispositivoCadastroComponent },
+			{ path: 'dispositivos/cadastro/:idDispositivo', component: DispositivoCadastroComponent },
 
 		],
 		canActivate: [AuthGuard]

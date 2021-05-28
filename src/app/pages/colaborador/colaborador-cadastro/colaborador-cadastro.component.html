@@ -15,7 +15,7 @@
     </div>
     <div class="col-sm-5">
         <mat-form-field appearance="outline">
-            <mat-label>Empresa de Vinculação</mat-label>
+            <mat-label>Filial de Vinculação</mat-label>
             <mat-select [(value)]="infoColaboradorForm.filialId" required>
                 <mat-option *ngFor="let filial of filiais" [value]="filial.filialForm.id">
                     {{ filial.filialForm.razaoSocial }}
@@ -34,8 +34,8 @@
             <mat-label>Cargo</mat-label>
             <input matInput type="text" [(ngModel)]="infoColaboradorForm.cargo" required>
             <button mat-button *ngIf="infoColaboradorForm.cargo" matSuffix mat-icon-button aria-label="Clear" (click)="infoColaboradorForm.cargo=''">
-				<mat-icon>close</mat-icon>
-			</button>
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
     </div>
     <div class="col-sm-4">
@@ -43,8 +43,8 @@
             <mat-label>Setor</mat-label>
             <input matInput type="text" [(ngModel)]="infoColaboradorForm.setor" required>
             <button mat-button *ngIf="infoColaboradorForm.setor" matSuffix mat-icon-button aria-label="Clear" (click)="infoColaboradorForm.setor=''">
-				<mat-icon>close</mat-icon>
-			</button>
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
     </div>
     <div class="col-sm-2">
@@ -52,8 +52,8 @@
             <mat-label>Ramal</mat-label>
             <input matInput type="text" [(ngModel)]="infoColaboradorForm.ramal">
             <button mat-button *ngIf="infoColaboradorForm.ramal" matSuffix mat-icon-button aria-label="Clear" (click)="infoColaboradorForm.ramal=''">
-				<mat-icon>close</mat-icon>
-			</button>
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
     </div>
     <div class="col-sm-2">
@@ -61,8 +61,8 @@
             <mat-label>PIS/PASEP</mat-label>
             <input matInput type="text" [(ngModel)]="infoColaboradorForm.pisPasep">
             <button mat-button *ngIf="infoColaboradorForm.pisPasep" matSuffix mat-icon-button aria-label="Clear" (click)="infoColaboradorForm.pisPasep=''">
-				<mat-icon>close</mat-icon>
-			</button>
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
     </div>
 </div>
@@ -72,8 +72,8 @@
             <mat-label>CTPS</mat-label>
             <input matInput type="text" [(ngModel)]="infoColaboradorForm.ctps">
             <button mat-button *ngIf="infoColaboradorForm.ctps" matSuffix mat-icon-button aria-label="Clear" (click)="infoColaboradorForm.ctps=''">
-				<mat-icon>close</mat-icon>
-			</button>
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
     </div>
     <div class="col-sm-3">
@@ -81,8 +81,8 @@
             <mat-label>Série</mat-label>
             <input matInput type="text" [(ngModel)]="infoColaboradorForm.serie">
             <button mat-button *ngIf="infoColaboradorForm.serie" matSuffix mat-icon-button aria-label="Clear" (click)="infoColaboradorForm.serie=''">
-				<mat-icon>close</mat-icon>
-			</button>
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
     </div>
     <div class="col-sm-3">

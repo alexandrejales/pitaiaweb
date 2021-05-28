@@ -1,4 +1,4 @@
-<h1 class="text-center">Entrar</h1>
+<h1 class="text-center">Componente Teste</h1>
 
 <form (ngSubmit)="onSubmit()" #formLogin="ngForm">
     <div class="row">
@@ -20,3 +20,5 @@
     <button mat-raised-button type="submit" color="primary" [disabled]="formLogin.form.invalid">Entrar</button>
     <a mat-raised-button [routerLink]="['/create-account']">Criar Conta</a>
 </form>
+
+{{ usuarios }} {{ apiexterna }}

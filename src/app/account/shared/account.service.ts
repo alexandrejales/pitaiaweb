@@ -2,16 +2,16 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { Observable } from 'rxjs';
-import { catchError, retry, tap } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 import { TokenDto } from 'src/app/model/dto/token-dto';
 import { UsuarioDto } from 'src/app/model/dto/usuario-dto';
 import { CriarContaForm } from 'src/app/model/form/criar-conta-form';
 import { LoginForm } from 'src/app/model/form/login-form';
 import { Constante } from 'src/app/resource/contante';
-import { Library } from 'src/app/resource/library';
 import { ToastService } from 'src/app/service/toast.service';
 import jwt_decode from 'jwt-decode';
 import { PayloadJWT } from 'src/app/model/dto/payload-jwt';
+import { Library } from 'src/app/resource/library';
 
 @Injectable({
 	providedIn: 'root'
@@ -29,7 +29,7 @@ export class AccountService {
 	constructor(private httpClient: HttpClient, private toastService: ToastService) { }
 
 	login(loginForm: LoginForm) {
-		this.httpClient.post<UsuarioDto>(Library.API_URL + '/conta/logar', loginForm, this.httpOptions)
+		this.httpClient.post<UsuarioDto>(Constante.API_URL + '/conta/logar', loginForm, this.httpOptions)
 			.subscribe(
 				{
 					next: data => {
@@ -46,14 +46,14 @@ export class AccountService {
 
 	login2(loginForm: LoginForm): Observable<TokenDto> {
 
-		return this.httpClient.post<TokenDto>(Library.API_URL + '/auth', loginForm, this.httpOptions)
+		return this.httpClient.post<TokenDto>(Constante.API_URL + '/auth', loginForm, this.httpOptions)
 			.pipe(
 				catchError(this.handleError)
 			)
 	}
 
 	createAccount(criarContaForm: CriarContaForm): Observable<CriarContaForm> {
-		return this.httpClient.post<CriarContaForm>(Library.API_URL + '/conta/criar', criarContaForm, this.httpOptions)
+		return this.httpClient.post<CriarContaForm>(Constante.API_URL + '/conta/criar', criarContaForm, this.httpOptions)
 			.pipe(
 				retry(1),
 				catchError(this.handleError)

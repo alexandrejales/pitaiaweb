@@ -1,4 +1,4 @@
 export class LoginForm {
-    email: string = '';
-    senha: string = '';
+    public email: string = '';
+    public senha: string = '';
 }
