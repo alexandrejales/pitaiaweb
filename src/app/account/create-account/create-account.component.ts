@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationComponent } from 'src/app/layout/authentication/authentication.component';
 import { CriarContaForm } from 'src/app/model/form/criar-conta-form';
 import { AccountService } from '../shared/account.service';
 
@@ -21,8 +22,19 @@ export class CreateAccountComponent implements OnInit {
 
     //Cria Nova Conta
     onSubmit() {
+        AuthenticationComponent.showProgress();
+        console.log("Criando Usuario");
         this.accountService.createAccount(this.criarContaForm).subscribe(
-            () => this.router.navigate(['/'])
+            {
+                next: () => {
+                    this.router.navigate(['/'])
+                    AuthenticationComponent.hiddenProgress();
+                },
+                error: () => {
+                    AuthenticationComponent.hiddenProgress();
+                }
+            }
+
         );
     }
 }

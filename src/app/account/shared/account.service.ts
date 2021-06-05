@@ -2,80 +2,67 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { TokenDto } from 'src/app/model/dto/token-dto';
-import { UsuarioDto } from 'src/app/model/dto/usuario-dto';
 import { CriarContaForm } from 'src/app/model/form/criar-conta-form';
 import { LoginForm } from 'src/app/model/form/login-form';
 import { Constante } from 'src/app/resource/contante';
 import { ToastService } from 'src/app/service/toast.service';
 import jwt_decode from 'jwt-decode';
 import { PayloadJWT } from 'src/app/model/dto/payload-jwt';
-import { Library } from 'src/app/resource/library';
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 export class AccountService {
 
-	public: String = '';
+    constructor(private httpClient: HttpClient, private toastService: ToastService) { }
 
-	httpOptions = {
-		headers: new HttpHeaders({
-			'Content-Type': 'application/json'
-		}),
-	};
+    login(loginForm: LoginForm): Observable<TokenDto> {
 
-	constructor(private httpClient: HttpClient, private toastService: ToastService) { }
+        return this.httpClient.post<TokenDto>(Constante.API_URL + '/auth', loginForm)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
 
-	login(loginForm: LoginForm): Observable<TokenDto> {
+    createAccount(criarContaForm: CriarContaForm): Observable<CriarContaForm> {
+        return this.httpClient.post<CriarContaForm>(Constante.API_URL + '/conta/criar', criarContaForm)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
 
-		return this.httpClient.post<TokenDto>(Constante.API_URL + '/auth', loginForm, this.httpOptions)
-			.pipe(
-				catchError(this.handleError)
-			)
-	}
+    logout(): void {
+        window.localStorage.clear();
+    }
 
-	createAccount(criarContaForm: CriarContaForm): Observable<CriarContaForm> {
-		return this.httpClient.post<CriarContaForm>(Constante.API_URL + '/conta/criar', criarContaForm, this.httpOptions)
-			.pipe(
-				retry(1),
-				catchError(this.handleError)
-			)
-	}
+    public decodePayloadJWT(token: string): PayloadJWT {
+        try {
+            return jwt_decode(token);
+        } catch (Error) {
+            return new PayloadJWT();
+        }
+    }
 
-	logout() {
-		window.localStorage.clear();
-	}
+    // Manipulação de erros
+    handleError(error: HttpErrorResponse): Observable<any> {
 
-	public decodePayloadJWT(token: string): PayloadJWT {
-		try {
-			return jwt_decode(token);
-		} catch (Error) {
-			return new PayloadJWT;
-		}
-	}
+        if (error.status === 403) {
+            console.log('Email ou senha inválidos.');
+            this.toastService.openAlertSnackBar(error.error.mensagem);
+            return throwError(error.error.mensagem);
+        } else {
+            let errorMessage = '';
+            if (error.error instanceof ErrorEvent) {
+                // Erro ocorreu no lado do client
+                errorMessage = error.error.message;
+            } else {
 
-	// Manipulação de erros
-	handleError(error: HttpErrorResponse) {
-
-		if (error.status == 403) {
-			console.log("Email ou senha inválidos.");
-			let msg: string = error.error.mensagem;
-
-			this.toastService.openAlertSnackBar("Deu Erro");
-			return throwError(error.error.mensagem);
-		} else {
-			let errorMessage = '';
-			if (error.error instanceof ErrorEvent) {
-				// Erro ocorreu no lado do client
-				errorMessage = error.error.message;
-			} else {
-
-				errorMessage = 'Código do erro: ' + error.status + ' Menssagem: ' + error.message;
-			}
-			console.log(errorMessage);
-			return throwError(errorMessage);
-		}
-	};
+                errorMessage = 'Código do erro: ' + error.status + ' Menssagem: ' + error.message;
+            }
+            console.log(errorMessage);
+            return throwError(errorMessage);
+        }
+    }
 }
