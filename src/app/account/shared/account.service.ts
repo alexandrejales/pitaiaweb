@@ -26,7 +26,7 @@ export class AccountService {
             );
     }
 
-    createAccount(criarContaForm: CriarContaForm): Observable<CriarContaForm> {
+    createAccount(criarContaForm: CriarContaForm): Observable<any> {
         return this.httpClient.post<CriarContaForm>(Constantes.API_URL + '/conta/criar', criarContaForm)
             .pipe(
                 catchError(this.handleError)
@@ -48,21 +48,10 @@ export class AccountService {
     // Manipulação de erros
     handleError(error: HttpErrorResponse): Observable<any> {
 
-        if (error.status === 403) {
-            console.log('Email ou senha inválidos.');
-            this.toastService.openAlertSnackBar(error.error.mensagem);
-            return throwError(error.error.mensagem);
-        } else {
-            let errorMessage = '';
-            if (error.error instanceof ErrorEvent) {
-                // Erro ocorreu no lado do client
-                errorMessage = error.error.message;
-            } else {
+        if (error.error instanceof ErrorEvent) {
 
-                errorMessage = 'Código do erro: ' + error.status + ' Menssagem: ' + error.message;
-            }
-            console.log(errorMessage);
-            return throwError(errorMessage);
+        } else {
         }
+        return throwError(error);
     }
 }
