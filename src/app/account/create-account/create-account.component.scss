@@ -1,3 +1,11 @@
 .mat-raised-button {
     margin-right: 5px;
 }
+
+.new-conta {
+    padding: 2rem;
+    //Quando for telas maiores
+    @media (min-width: 576px) {
+        max-width: 30rem;
+    }
+}

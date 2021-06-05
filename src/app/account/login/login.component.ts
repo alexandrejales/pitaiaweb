@@ -6,6 +6,7 @@ import { LoginForm } from 'src/app/model/form/login-form';
 import { ToastService } from 'src/app/service/toast.service';
 import { Constante } from 'src/app/resource/contante';
 import { PayloadJWT } from 'src/app/model/dto/payload-jwt';
+import { AuthenticationComponent } from 'src/app/layout/authentication/authentication.component';
 
 
 @Component({
@@ -16,7 +17,6 @@ import { PayloadJWT } from 'src/app/model/dto/payload-jwt';
 export class LoginComponent implements OnInit {
 
 	durationInSeconds = 5;
-
 	loginForm: LoginForm = new LoginForm();
 	hide: boolean = true;
 
@@ -31,10 +31,11 @@ export class LoginComponent implements OnInit {
 	}
 
 	logar() {
-		window.localStorage.setItem(Constante.EMAIL, this.loginForm.email);
+
+		AuthenticationComponent.showProgress();
 
 		//Chamada ao servidor para autenticar
-		this.accountService.login2(this.loginForm).subscribe(
+		this.accountService.login(this.loginForm).subscribe(
 			{
 				next: data => {
 					let payloadJWT: PayloadJWT = this.accountService.decodePayloadJWT(data.token);
@@ -48,13 +49,14 @@ export class LoginComponent implements OnInit {
 
 					this.toastService.openSeccessSnackBar("Bem vindo " + payloadJWT.email);
 					this.router.navigate(['/']);
+					AuthenticationComponent.hiddenProgress();
+
 				},
 				error: () => {
 					this.toastService.openSeccessSnackBar("Falha interna ao realizar Login, tente em alguns instantes");
+					AuthenticationComponent.hiddenProgress();
 				}
 			}
 		)
-
-		this.loginForm.senha = '';
 	}
 }

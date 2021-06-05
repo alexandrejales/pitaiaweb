@@ -1,33 +1,39 @@
-<h1 class="text-center">Criar minha conta</h1>
+<div class="h-100 position-relative">
 
-<form (ngSubmit)="onSubmit(formCadastro)" #formCadastro="ngForm">
-    <div class="row">
-        <div class="col-sm">
-            <mat-form-field appearance="outline">
+    <div class="new-conta w-100 position-absolute top-50 start-50 translate-middle">
+
+        <div class="logo-imagem w-100 mb-5 d-flex justify-content-center">
+            <div class="w-50">
+                <img src="assets/logo-completa.png" class="img-fluid" alt="Pitaya Web">
+            </div>
+        </div>
+
+        <h2>Nova Conta</h2>
+
+        <form (ngSubmit)="onSubmit()" #formCadastro="ngForm">
+            <mat-form-field class="w-100" appearance="outline">
                 <mat-label>Nome</mat-label>
                 <input matInput placeholder="nome" [(ngModel)]="criarContaForm.nome" name="nome" id="nome" required>
             </mat-form-field>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm">
             <mat-form-field appearance="outline">
                 <mat-label>E-mail</mat-label>
                 <input matInput placeholder="nome@example.com" [(ngModel)]="criarContaForm.email" name="email" id="email" type="email" required>
             </mat-form-field>
-        </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="criarContaForm.senha" name="senha" id="senha" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar senha'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <button mat-raised-button type="submit" color="primary" [disabled]="formCadastro.form.invalid">Criar</button>
+            <button mat-raised-button type="button" color="accent" [routerLink]=" [ '/login'] ">Voltar</button>
+
+        </form>
+
     </div>
 
-    <div class="row">
-        <mat-form-field appearance="outline">
-            <mat-label>Senha</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="criarContaForm.senha" name="senha" id="senha" required>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar senha'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
-    </div>
-    <button mat-raised-button type="submit" color="primary" [disabled]="formCadastro.form.invalid">Salvar</button>
-    <button mat-raised-button type="button" color="accent" [routerLink]=" [ '/login'] ">Voltar</button>
-</form>
+</div>

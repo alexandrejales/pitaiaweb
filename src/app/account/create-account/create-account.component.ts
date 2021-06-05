@@ -20,15 +20,9 @@ export class CreateAccountComponent implements OnInit {
     }
 
     //Cria Nova Conta
-    onSubmit(form: NgForm) {
+    onSubmit() {
         this.accountService.createAccount(this.criarContaForm).subscribe(
             () => this.router.navigate(['/'])
         );
-    }
-
-    //Limpa Formulário
-    cleanForm(form: NgForm) {
-        form.resetForm();
-        this.criarContaForm = {} as CriarContaForm;
     }
 }

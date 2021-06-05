@@ -1,22 +1,36 @@
-<h1 class="text-center">Entrar</h1>
+<div class="position-relative">
 
-<form (ngSubmit)="onSubmit()" #formLogin="ngForm">
-    <div class="row">
-        <mat-form-field appearance="outline">
-            <mat-label>E-mail</mat-label>
-            <input matInput placeholder="nome@example.com" [(ngModel)]="loginForm.email" name="email" id="email" required>
-        </mat-form-field>
-    </div>
+    <div class="w-100 position-absolute top-50 start-50 translate-middle">
+        <div class="login container-fluid">
 
-    <div class="row">
-        <mat-form-field appearance="outline">
-            <mat-label>Senha</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="loginForm.senha" name="senha" id="senha" required>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar senha'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
+            <div class="logo-imagem w-100 d-flex justify-content-center">
+                <div class="w-50">
+                    <img src="assets/logo-completa.png" class="img-fluid" alt="Pitaya Web">
+                </div>
+            </div>
+
+            <h2>Entrar</h2>
+
+            <form (ngSubmit)="onSubmit()" #formLogin="ngForm">
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput placeholder="nome@example.com" [(ngModel)]="loginForm.email" type="email" name="email" id="email" required>
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="loginForm.senha" name="senha" id="senha" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar senha'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <button mat-raised-button type="submit" color="primary" [disabled]="formLogin.form.invalid">Entrar</button>
+                <a mat-raised-button [routerLink]="['/create-account']">Criar Conta</a>
+            </form>
+        </div>
     </div>
-    <button mat-raised-button type="submit" color="primary" [disabled]="formLogin.form.invalid">Entrar</button>
-    <a mat-raised-button [routerLink]="['/create-account']">Criar Conta</a>
-</form>
+</div>

@@ -1,14 +1,9 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
-
 /* You can add global styles to this file, and also import other style files */
 
+$grid-breakpoints: ( xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px);
 html,
 body {
     height: 100%;
-}
-
-body {
-    margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 

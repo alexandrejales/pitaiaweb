@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { LoginForm } from '../model/form/login-form';
 import { UsuarioForm } from '../model/form/usuario-form';
 import { ToastService } from '../service/toast.service';
 import { UsuarioService } from '../service/usuario.service';
+import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 
 @Component({
 	selector: 'app-teste',
@@ -16,7 +18,16 @@ export class TesteComponent implements OnInit {
 	usuarioFormList: UsuarioForm[] = [];
 	usuarios: string = 'Usuarios: Vazio';
 	apiexterna: string = 'Api Externa';
-	constructor(private usuarioService: UsuarioService, private toastService: ToastService) { }
+
+	constructor(public dialog: MatDialog, private usuarioService: UsuarioService, private toastService: ToastService) { }
+
+	openDialog() {
+		const dialogRef = this.dialog.open(UserDialogComponent);
+
+		dialogRef.afterClosed().subscribe(result => {
+			console.log(`Dialog result: ${result}`);
+		});
+	}
 
 	onSubmit() {
 		console.log("Firmulario submetido");

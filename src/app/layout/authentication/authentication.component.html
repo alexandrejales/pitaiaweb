@@ -1,3 +1,8 @@
-<div class="authentication">
+<div class="w-100 h-100">
     <router-outlet></router-outlet>
+</div>
+
+<!-- Deve ser colocado ao fim devido a ordem de renderização -->
+<div class="sombra" [hidden]="getHiddenProgress()">
+    <mat-progress-bar mode="indeterminate" style="height: 0.1rem;"></mat-progress-bar>
 </div>

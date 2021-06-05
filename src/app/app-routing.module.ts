@@ -21,8 +21,7 @@ import { TesteComponent } from './teste/teste.component';
 const routes: Routes = [
 	{ path: 'teste', component: TesteComponent },
 	{
-		path: '',
-		component: MenuComponent,
+		path: '', component: MenuComponent,
 		children: [
 			{ path: '', component: DashboardHomeComponent },
 

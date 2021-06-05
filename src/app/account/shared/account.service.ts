@@ -28,23 +28,7 @@ export class AccountService {
 
 	constructor(private httpClient: HttpClient, private toastService: ToastService) { }
 
-	login(loginForm: LoginForm) {
-		this.httpClient.post<UsuarioDto>(Constante.API_URL + '/conta/logar', loginForm, this.httpOptions)
-			.subscribe(
-				{
-					next: data => {
-						Library.usuarioLogado = data;
-						window.localStorage.setItem('token', 'lksjdf hadjfahldjkalhdald jkfahlds kjh laksj');
-						console.log(data);
-					},
-					error: error => {
-						console.log(error.message);
-					}
-				}
-			)
-	}
-
-	login2(loginForm: LoginForm): Observable<TokenDto> {
+	login(loginForm: LoginForm): Observable<TokenDto> {
 
 		return this.httpClient.post<TokenDto>(Constante.API_URL + '/auth', loginForm, this.httpOptions)
 			.pipe(
