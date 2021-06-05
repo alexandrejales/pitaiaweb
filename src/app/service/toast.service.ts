@@ -5,32 +5,32 @@ import { InfoSnackBarComponent } from '../layout/toast/info-snack-bar/info-snack
 import { SuccessSnackBarComponent } from '../layout/toast/success-snack-bar/success-snack-bar.component';
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 export class ToastService {
 
-	private time: number = 5000;
+    private time = 5000;
 
-	constructor(private _snackBar: MatSnackBar) { }
+    constructor(private snackBar: MatSnackBar) { }
 
-	openSeccessSnackBar(mensagem: string) {
-		this._snackBar.openFromComponent(SuccessSnackBarComponent, {
-			duration: this.time,
-			data: mensagem
-		});
-	}
+    openSeccessSnackBar(mensagem: string): void {
+        this.snackBar.openFromComponent(SuccessSnackBarComponent, {
+            duration: this.time,
+            data: mensagem
+        });
+    }
 
-	openAlertSnackBar(mensagem: string) {
-		this._snackBar.openFromComponent(AlertSnackBarComponent, {
-			duration: this.time,
-			data: mensagem
-		});
-	}
+    openAlertSnackBar(mensagem: string): void {
+        this.snackBar.openFromComponent(AlertSnackBarComponent, {
+            duration: this.time,
+            data: mensagem
+        });
+    }
 
-	openInfoSnackBar(mensagem: string) {
-		this._snackBar.openFromComponent(InfoSnackBarComponent, {
-			duration: this.time,
-			data: mensagem
-		});
-	}
+    openInfoSnackBar(mensagem: string): void {
+        this.snackBar.openFromComponent(InfoSnackBarComponent, {
+            duration: this.time,
+            data: mensagem
+        });
+    }
 }

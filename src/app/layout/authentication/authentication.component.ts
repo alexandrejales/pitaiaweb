@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'app-authentication',
-	templateUrl: './authentication.component.html',
-	styleUrls: ['./authentication.component.scss']
+    selector: 'app-authentication',
+    templateUrl: './authentication.component.html',
+    styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent implements OnInit {
 
-	public static progress: boolean = true;
-	constructor() { }
+    public static progress = true;
+    constructor() { }
 
-	ngOnInit(): void {
+    public static hiddenProgress(): void {
+        AuthenticationComponent.progress = true;
+    }
 
-	}
+    public static showProgress(): void {
+        AuthenticationComponent.progress = false;
+    }
 
-	public getHiddenProgress(): boolean {
-		return AuthenticationComponent.progress;
-	}
+    ngOnInit(): void {
 
-	public static hiddenProgress() {
-		AuthenticationComponent.progress = true;
-	}
+    }
 
-	public static showProgress() {
-		AuthenticationComponent.progress = false;
-	}
+    public getHiddenProgress(): boolean {
+        return AuthenticationComponent.progress;
+    }
 }

@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { TokenDto } from 'src/app/model/dto/token-dto';
 import { CriarContaForm } from 'src/app/model/form/criar-conta-form';
 import { LoginForm } from 'src/app/model/form/login-form';
-import { Constante } from 'src/app/resource/contante';
+import { Constantes } from 'src/app/resource/contante';
 import { ToastService } from 'src/app/service/toast.service';
 import jwt_decode from 'jwt-decode';
 import { PayloadJWT } from 'src/app/model/dto/payload-jwt';
@@ -20,14 +20,14 @@ export class AccountService {
 
     login(loginForm: LoginForm): Observable<TokenDto> {
 
-        return this.httpClient.post<TokenDto>(Constante.API_URL + '/auth', loginForm)
+        return this.httpClient.post<TokenDto>(Constantes.API_URL + '/auth', loginForm)
             .pipe(
                 catchError(this.handleError)
             );
     }
 
     createAccount(criarContaForm: CriarContaForm): Observable<CriarContaForm> {
-        return this.httpClient.post<CriarContaForm>(Constante.API_URL + '/conta/criar', criarContaForm)
+        return this.httpClient.post<CriarContaForm>(Constantes.API_URL + '/conta/criar', criarContaForm)
             .pipe(
                 catchError(this.handleError)
             );

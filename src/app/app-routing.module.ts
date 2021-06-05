@@ -19,48 +19,48 @@ import { ListarUsuarioComponent } from './pages/usuarios/listar-usuario/listar-u
 import { TesteComponent } from './teste/teste.component';
 
 const routes: Routes = [
-	{ path: 'teste', component: TesteComponent },
-	{
-		path: '', component: MenuComponent,
-		children: [
-			{ path: '', component: DashboardHomeComponent },
+    { path: 'teste', component: TesteComponent },
+    {
+        path: '', component: MenuComponent,
+        children: [
+            { path: '', component: DashboardHomeComponent },
 
-			{ path: 'colaboradores', component: ColaboradorListarComponent },
-			{ path: 'colaboradores/cadastro', component: ColaboradorCadastroComponent },
-			{ path: 'colaboradores/cadastro/:idColaborador', component: ColaboradorCadastroComponent },
+            { path: 'colaboradores', component: ColaboradorListarComponent },
+            { path: 'colaboradores/cadastro', component: ColaboradorCadastroComponent },
+            { path: 'colaboradores/cadastro/:idColaborador', component: ColaboradorCadastroComponent },
 
-			{ path: 'filiais', component: ListaFilialComponent },
-			{ path: 'filiais/cadastro', component: CadastroFilialComponent },
-			{ path: 'filiais/cadastro/:idFilial', component: CadastroFilialComponent },
+            { path: 'filiais', component: ListaFilialComponent },
+            { path: 'filiais/cadastro', component: CadastroFilialComponent },
+            { path: 'filiais/cadastro/:idFilial', component: CadastroFilialComponent },
 
-			{ path: 'administrativo', component: ListaUsuarioAdmComponent },
-			{ path: 'administrativo/cadastro', component: CadastroUsuarioAdmComponent },
-			{ path: 'administrativo/cadastro/:idUsuario', component: CadastroUsuarioAdmComponent },
+            { path: 'administrativo', component: ListaUsuarioAdmComponent },
+            { path: 'administrativo/cadastro', component: CadastroUsuarioAdmComponent },
+            { path: 'administrativo/cadastro/:idUsuario', component: CadastroUsuarioAdmComponent },
 
-			{ path: 'usuarios', component: ListarUsuarioComponent },
-			{ path: 'usuarios/cadastro', component: CadastroUsuarioComponent },
-			{ path: 'usuarios/cadastro/:idUsuario', component: CadastroUsuarioComponent },
+            { path: 'usuarios', component: ListarUsuarioComponent },
+            { path: 'usuarios/cadastro', component: CadastroUsuarioComponent },
+            { path: 'usuarios/cadastro/:idUsuario', component: CadastroUsuarioComponent },
 
-			{ path: 'dispositivos', component: DispositivoListarComponent },
-			{ path: 'dispositivos/cadastro', component: DispositivoCadastroComponent },
-			{ path: 'dispositivos/cadastro/:idDispositivo', component: DispositivoCadastroComponent },
+            { path: 'dispositivos', component: DispositivoListarComponent },
+            { path: 'dispositivos/cadastro', component: DispositivoCadastroComponent },
+            { path: 'dispositivos/cadastro/:idDispositivo', component: DispositivoCadastroComponent },
 
-		],
-		canActivate: [AuthGuard]
-	},
-	{
-		path: '',
-		component: AuthenticationComponent,
-		children: [
-			{ path: '', redirectTo: 'login', pathMatch: 'full' },
-			{ path: 'login', component: LoginComponent },
-			{ path: 'create-account', component: CreateAccountComponent }
-		]
-	}
+        ],
+        canActivate: [AuthGuard]
+    },
+    {
+        path: '',
+        component: AuthenticationComponent,
+        children: [
+            { path: '', redirectTo: 'login', pathMatch: 'full' },
+            { path: 'login', component: LoginComponent },
+            { path: 'create-account', component: CreateAccountComponent }
+        ]
+    }
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

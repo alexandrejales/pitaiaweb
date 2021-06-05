@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AccountService } from '../shared/account.service';
 import { LoginForm } from 'src/app/model/form/login-form';
 import { ToastService } from 'src/app/service/toast.service';
-import { Constante } from 'src/app/resource/contante';
+import { Constantes } from 'src/app/resource/contante';
 import { PayloadJWT } from 'src/app/model/dto/payload-jwt';
 import { AuthenticationComponent } from 'src/app/layout/authentication/authentication.component';
 
@@ -37,13 +37,13 @@ export class LoginComponent implements OnInit {
             {
                 next: data => {
                     const payloadJWT: PayloadJWT = this.accountService.decodePayloadJWT(data.token);
-                    window.localStorage.setItem(Constante.TOKEN, data.token);
-                    window.localStorage.setItem(Constante.EMAIL, payloadJWT.email);
-                    window.localStorage.setItem(Constante.CONTA_ID, payloadJWT.conta);
-                    window.localStorage.setItem(Constante.EXP, payloadJWT.exp.toString());
-                    window.localStorage.setItem(Constante.IAT, payloadJWT.iat.toString());
-                    window.localStorage.setItem(Constante.PERFIL, payloadJWT.perfil);
-                    window.localStorage.setItem(Constante.USUARIO_ID, payloadJWT.usuario);
+                    window.localStorage.setItem(Constantes.TOKEN, data.token);
+                    window.localStorage.setItem(Constantes.EMAIL, payloadJWT.email);
+                    window.localStorage.setItem(Constantes.CONTA_ID, payloadJWT.conta);
+                    window.localStorage.setItem(Constantes.EXP, payloadJWT.exp.toString());
+                    window.localStorage.setItem(Constantes.IAT, payloadJWT.iat.toString());
+                    window.localStorage.setItem(Constantes.PERFIL, payloadJWT.perfil);
+                    window.localStorage.setItem(Constantes.USUARIO_ID, payloadJWT.usuario);
 
                     this.toastService.openSeccessSnackBar('Bem vindo ' + payloadJWT.email);
                     this.router.navigate(['/']);
