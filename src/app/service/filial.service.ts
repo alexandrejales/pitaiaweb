@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -47,11 +47,15 @@ export class FilialService {
 
     // Manipulação de erros
     handleError(error: HttpErrorResponse): Observable<any> {
+        let messagem = '';
         if (error instanceof ErrorEvent) {
 
         } else {
-
+            if (error.status === 0) {
+                messagem = 'Erro ao se conectar com o servidor ';
+            }
         }
-        return throwError(error);
+
+        return throwError(messagem);
     }
 }

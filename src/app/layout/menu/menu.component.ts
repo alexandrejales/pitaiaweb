@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Constantes } from 'src/app/resource/contante';
+import { RootComponent } from '../root/root.component';
 
 @Component({
     selector: 'app-menu',

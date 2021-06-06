@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationComponent } from 'src/app/layout/authentication/authentication.component';
+import { RootComponent } from 'src/app/layout/root/root.component';
 import { CriarContaForm } from 'src/app/model/form/criar-conta-form';
 import { ToastService } from 'src/app/service/toast.service';
 import { AccountService } from '../shared/account.service';
@@ -25,18 +25,18 @@ export class CreateAccountComponent implements OnInit {
 
     // Cria Nova Conta
     onSubmit(): void {
-        AuthenticationComponent.showProgress();
+        RootComponent.showProgress();
         console.log('Criando Usuario');
         this.accountService.createAccount(this.criarContaForm).subscribe(
             {
                 next: () => {
                     this.router.navigate(['/']);
-                    AuthenticationComponent.hiddenProgress();
+                    RootComponent.hiddenProgress();
                     this.toastService.openSeccessSnackBar('Conta criada com sucesso');
                 },
                 error: () => {
                     this.toastService.openAlertSnackBar('Erro ao criar conta');
-                    AuthenticationComponent.hiddenProgress();
+                    RootComponent.hiddenProgress();
                 }
             }
         );

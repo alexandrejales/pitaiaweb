@@ -5,8 +5,7 @@ import { LoginForm } from 'src/app/model/form/login-form';
 import { ToastService } from 'src/app/service/toast.service';
 import { Constantes } from 'src/app/resource/contante';
 import { PayloadJWT } from 'src/app/model/dto/payload-jwt';
-import { AuthenticationComponent } from 'src/app/layout/authentication/authentication.component';
-
+import { RootComponent } from 'src/app/layout/root/root.component';
 
 @Component({
     selector: 'app-login',
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit {
     }
 
     logar(): void {
-        AuthenticationComponent.showProgress();
+        RootComponent.showProgress();
 
         // Chamada ao servidor para autenticar
         this.accountService.login(this.loginForm).subscribe(
@@ -47,12 +46,11 @@ export class LoginComponent implements OnInit {
 
                     this.toastService.openSeccessSnackBar('Bem vindo ' + payloadJWT.email);
                     this.router.navigate(['/']);
-                    AuthenticationComponent.hiddenProgress();
-
+                    RootComponent.hiddenProgress();
                 },
                 error: () => {
                     this.toastService.openAlertSnackBar('Falha interna, tente mais tarde');
-                    AuthenticationComponent.hiddenProgress();
+                    RootComponent.hiddenProgress();
                 }
             }
         );

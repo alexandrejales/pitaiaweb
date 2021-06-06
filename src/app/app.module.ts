@@ -29,7 +29,7 @@ import { EnderecoFormComponent } from './components/endereco-form/endereco-form.
 import { ListaUsuarioAdmComponent } from './pages/administrativo/lista-usuario-adm/lista-usuario-adm.component';
 import { PessoaFormComponent } from './components/pessoa-form/pessoa-form.component';
 import { CadastroUsuarioAdmComponent } from './pages/administrativo/cadastro-usuario-adm/cadastro-usuario-adm.component';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { AuthInterceptor } from './auth.interceptor';
 import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
 import { CadastroUsuarioComponent } from './pages/usuarios/cadastro-usuario/cadastro-usuario.component';
@@ -39,55 +39,59 @@ import { DispositivoListarComponent } from './pages/dispositivos/dispositivo-lis
 import { TesteComponent } from './teste/teste.component';
 import { MaterialModule } from './material.module';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { RootComponent } from './layout/root/root.component';
 
 const maskConfig: Partial<IConfig> = {
-	validation: false,
+    validation: false,
 };
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		CreateAccountComponent,
-		HomeComponent,
-		AuthenticationComponent,
-		LoginComponent,
-		MenuComponent,
-		FooterComponent,
-		ColaboradorCadastroComponent,
-		ColaboradorListarComponent,
-		LoginSnackBarComponent,
-		AlertSnackBarComponent,
-		SuccessSnackBarComponent,
-		InfoSnackBarComponent,
-		DashboardHomeComponent,
-		FilialListItemComponent,
-		UserInfoComponent,
-		CadastroFilialComponent,
-		ListaFilialComponent,
-		EnderecoFormComponent,
-		ListaUsuarioAdmComponent,
-		PessoaFormComponent,
-		CadastroUsuarioAdmComponent,
-		UsuarioFormComponent,
-		CadastroUsuarioComponent,
-		ListarUsuarioComponent,
-		DispositivoCadastroComponent,
-		DispositivoListarComponent,
-		TesteComponent,
-		UserDialogComponent,
-	],
-	imports: [
-		MaterialModule,
-		FormsModule,
-		BrowserModule,
-		AppRoutingModule,
-		BrowserAnimationsModule,
-		HttpClientModule,
-		NgxMaskModule.forRoot(maskConfig),
-		LayoutModule,
+    declarations: [
+        AppComponent,
+        CreateAccountComponent,
+        HomeComponent,
+        AuthenticationComponent,
+        LoginComponent,
+        MenuComponent,
+        FooterComponent,
+        ColaboradorCadastroComponent,
+        ColaboradorListarComponent,
+        LoginSnackBarComponent,
+        AlertSnackBarComponent,
+        SuccessSnackBarComponent,
+        InfoSnackBarComponent,
+        DashboardHomeComponent,
+        FilialListItemComponent,
+        UserInfoComponent,
+        CadastroFilialComponent,
+        ListaFilialComponent,
+        EnderecoFormComponent,
+        ListaUsuarioAdmComponent,
+        PessoaFormComponent,
+        CadastroUsuarioAdmComponent,
+        UsuarioFormComponent,
+        CadastroUsuarioComponent,
+        ListarUsuarioComponent,
+        DispositivoCadastroComponent,
+        DispositivoListarComponent,
+        TesteComponent,
+        UserDialogComponent,
+        RootComponent,
+    ],
+    imports: [
+        MaterialModule,
+        FormsModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        NgxMaskModule.forRoot(maskConfig),
+        LayoutModule,
 
-	],
-	providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
-	bootstrap: [AppComponent]
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

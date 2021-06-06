@@ -20,6 +20,11 @@
                 <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="razaoSocial">
+                <th mat-header-cell *matHeaderCellDef> Razão Social </th>
+                <td mat-cell *matCellDef="let element"> {{element.filialForm.razaoSocial}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="bloqueado">
                 <th mat-header-cell *matHeaderCellDef> Bloqueado </th>
                 <td mat-cell *matCellDef="let element"> {{element.filialForm.bloqueado}} </td>
@@ -28,11 +33,6 @@
             <ng-container matColumnDef="cnpj">
                 <th mat-header-cell *matHeaderCellDef> CNPJ </th>
                 <td mat-cell *matCellDef="let element" mask="00.000.000/0000-00"> {{element.filialForm.cnpj}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="razaoSocial">
-                <th mat-header-cell *matHeaderCellDef> Razão Social </th>
-                <td mat-cell *matCellDef="let element"> {{element.filialForm.razaoSocial}} </td>
             </ng-container>
 
             <ng-container matColumnDef="inscricaoEstadual">
