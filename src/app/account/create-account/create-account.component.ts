@@ -26,7 +26,6 @@ export class CreateAccountComponent implements OnInit {
     // Cria Nova Conta
     onSubmit(): void {
         RootComponent.showProgress();
-        console.log('Criando Usuario');
         this.accountService.createAccount(this.criarContaForm).subscribe(
             {
                 next: () => {

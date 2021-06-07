@@ -7,64 +7,64 @@ import { UsuarioService } from '../service/usuario.service';
 import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 
 @Component({
-	selector: 'app-teste',
-	templateUrl: './teste.component.html',
-	styleUrls: ['./teste.component.scss']
+    selector: 'app-teste',
+    templateUrl: './teste.component.html',
+    styleUrls: ['./teste.component.scss']
 })
 export class TesteComponent implements OnInit {
 
-	loginForm: LoginForm = new LoginForm();
-	hide: boolean = true;
-	usuarioFormList: UsuarioForm[] = [];
-	usuarios: string = 'Usuarios: Vazio';
-	apiexterna: string = 'Api Externa';
+    loginForm: LoginForm = new LoginForm();
+    hide = true;
+    usuarioFormList: UsuarioForm[] = [];
+    usuarios = 'Usuarios: Vazio';
+    apiexterna = 'Api Externa';
 
-	constructor(public dialog: MatDialog, private usuarioService: UsuarioService, private toastService: ToastService) { }
+    constructor(public dialog: MatDialog, private usuarioService: UsuarioService, private toastService: ToastService) { }
 
-	openDialog() {
-		const dialogRef = this.dialog.open(UserDialogComponent);
+    openDialog(): void {
+        const dialogRef = this.dialog.open(UserDialogComponent);
 
-		dialogRef.afterClosed().subscribe(result => {
-			console.log(`Dialog result: ${result}`);
-		});
-	}
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+        });
+    }
 
-	onSubmit() {
-		console.log("Firmulario submetido");
-	}
+    onSubmit(): void {
+        console.log('Firmulario submetido');
+    }
 
-	ngOnInit(): void {
-		this.onFindAllTeste();
-		this.onFindOneTeste();
+    ngOnInit(): void {
+        this.onFindAllTeste();
+        this.onFindOneTeste();
 
-	}
+    }
 
-	onFindOneTeste() {
-		this.usuarioService.onFindOneTeste().subscribe(
-			{
-				next: data => {
-					this.apiexterna = JSON.stringify(data);
-				},
-				error: error => {
-					//Imprime erro da exception da API
-					this.toastService.openAlertSnackBar("Erro Api Externa");
-				}
-			}
-		);
-	}
+    onFindOneTeste(): void {
+        this.usuarioService.onFindOneTeste().subscribe(
+            {
+                next: data => {
+                    this.apiexterna = JSON.stringify(data);
+                },
+                error: error => {
+                    // Imprime erro da exception da API
+                    this.toastService.openAlertSnackBar('Erro Api Externa');
+                }
+            }
+        );
+    }
 
-	onFindAllTeste() {
-		this.usuarioService.onFindAllTeste().subscribe(
-			{
-				next: data => {
-					this.usuarioFormList = data;
-					this.usuarios = JSON.stringify(this.usuarioFormList);
-				},
-				error: error => {
-					//Imprime erro da exception da API
-					this.toastService.openAlertSnackBar("Erro ao carregar os dados");
-				}
-			}
-		);
-	}
+    onFindAllTeste(): void {
+        this.usuarioService.onFindAllTeste().subscribe(
+            {
+                next: data => {
+                    this.usuarioFormList = data;
+                    this.usuarios = JSON.stringify(this.usuarioFormList);
+                },
+                error: error => {
+                    // Imprime erro da exception da API
+                    this.toastService.openAlertSnackBar('Erro ao carregar os dados');
+                }
+            }
+        );
+    }
 }

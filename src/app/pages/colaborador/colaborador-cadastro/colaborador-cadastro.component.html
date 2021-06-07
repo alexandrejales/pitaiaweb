@@ -90,7 +90,7 @@
             <mat-label>Data de Admissão</mat-label>
             <input matInput [matDatepicker]="pickerAdmissao" [(ngModel)]="infoColaboradorForm.dataAdmissao">
             <mat-datepicker-toggle matSuffix [for]="pickerAdmissao"></mat-datepicker-toggle>
-            <mat-datepicker #pickerAdmissao></mat-datepicker>
+            <mat-datepicker touchUi #pickerAdmissao></mat-datepicker>
         </mat-form-field>
     </div>
     <div class="col-sm-3">
@@ -98,11 +98,11 @@
             <mat-label>Data de Demissão</mat-label>
             <input matInput [matDatepicker]="pickerDemissao" [(ngModel)]="infoColaboradorForm.dataDemissao">
             <mat-datepicker-toggle matSuffix [for]="pickerDemissao"></mat-datepicker-toggle>
-            <mat-datepicker #pickerDemissao></mat-datepicker>
+            <mat-datepicker touchUi #pickerDemissao></mat-datepicker>
         </mat-form-field>
     </div>
 </div>
 
 <button mat-raised-button type="button" color="primary" (click)="onSave()">Salvar</button>
-<button mat-raised-button type="button" color="accent" [routerLink]=" ['/colaboradores'] ">Voltar</button>
 <button mat-raised-button type="button" color="warn" [hidden]="idColaborador === undefined? true:false" (click)="onDelete()">Deletar</button>
+<button mat-raised-button type="button" color="accent" [routerLink]=" ['/colaboradores'] ">Voltar</button>

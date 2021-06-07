@@ -3,5 +3,5 @@
 <app-pessoa-form [pessoaForm]="usuarioForm.pessoaForm"></app-pessoa-form>
 
 <button mat-raised-button type="button" color="primary" (click)="onSave()">Salvar</button>
-<button mat-raised-button type="button" color="accent" [routerLink]=" ['/usuarios'] ">Voltar</button>
 <button mat-raised-button type="button" color="warn" [hidden]="idUsuario === undefined? true:false" (click)="onDelete()">Deletar</button>
+<button mat-raised-button type="button" color="accent" [routerLink]=" ['/usuarios'] ">Voltar</button>

@@ -40,5 +40,5 @@
 <app-endereco-form [endereco]="filialDto.enderecoForm"></app-endereco-form>
 
 <button mat-raised-button type="button" color="primary" (click)="onSave()">Salvar</button>
-<button mat-raised-button type="button" color="accent" [routerLink]=" ['/filiais'] ">Voltar</button>
 <button mat-raised-button type="button" color="warn" [hidden]="idFilial === undefined? true:false" (click)="onDelete()">Deletar</button>
+<button mat-raised-button type="button" color="accent" [routerLink]=" ['/filiais'] ">Voltar</button>

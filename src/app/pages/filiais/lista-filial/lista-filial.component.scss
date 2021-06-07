@@ -1,0 +1,11 @@
+.visible {
+    visibility: hidden;
+    //Quando for telas maiores
+    @media (min-width: 576px) {
+        visibility: hidden;
+    }
+}
+
+.mat-column-razaoSocial {
+    padding-left: 1rem;
+}

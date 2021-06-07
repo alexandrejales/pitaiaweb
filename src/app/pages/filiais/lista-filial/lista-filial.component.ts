@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FilialDto } from 'src/app/model/dto/filial-dto';
+import { Constantes } from 'src/app/resource/contante';
 import { FilialService } from 'src/app/service/filial.service';
 import { ToastService } from 'src/app/service/toast.service';
 
@@ -10,7 +11,9 @@ import { ToastService } from 'src/app/service/toast.service';
 })
 export class ListaFilialComponent implements OnInit {
 
-    displayedColumns: string[] = ['id', 'razaoSocial', 'bloqueado', 'cnpj', 'inscricaoEstadual', 'acao'];
+    displayedColumns: string[] = [];
+    columnsLarger: string[] = ['id', 'razaoSocial', 'bloqueado', 'cnpj', 'inscricaoEstadual', 'acao'];
+    columnsSmall: string[] = ['id', 'razaoSocial', 'acao'];
     filiaisDtoList: FilialDto[] = [];
     index = 0;
 
@@ -18,7 +21,17 @@ export class ListaFilialComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.onScrennResize();
         this.onFindAll();
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onScrennResize(): void {
+        if (window.innerWidth > 576) {
+            this.displayedColumns = this.columnsLarger;
+        } else {
+            this.displayedColumns = this.columnsSmall;
+        }
     }
 
     onFindAll(): void {

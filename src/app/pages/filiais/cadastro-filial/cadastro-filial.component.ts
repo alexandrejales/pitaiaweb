@@ -71,13 +71,18 @@ export class CadastroFilialComponent implements OnInit {
     }
 
     onUpdate(): void {
+        RootComponent.showProgress();
         this.filialService.update(this.filialDto).subscribe(
             {
                 next: data => {
+                    RootComponent.hiddenProgress();
                     this.toastService.openSeccessSnackBar('Filial atualizada com sucesso');
                 },
-                error: error => {
-                    this.toastService.openAlertSnackBar(error.error);
+                error: message => {
+                    if (String(message).length > 0) {
+                        this.toastService.openAlertSnackBar(message);
+                    }
+                    RootComponent.hiddenProgress();
                 }
             }
         );
@@ -85,14 +90,19 @@ export class CadastroFilialComponent implements OnInit {
 
     onDelete(): void {
         if (this.idFilial !== undefined) {
+            RootComponent.showProgress();
             this.filialService.delete(this.idFilial).subscribe(
                 {
                     next: data => {
+                        RootComponent.hiddenProgress();
                         this.toastService.openSeccessSnackBar('Filial deletada com sucesso');
                         this.router.navigate(['/filiais']);
                     },
-                    error: error => {
-                        this.toastService.openAlertSnackBar(error.error);
+                    error: message => {
+                        if (String(message).length > 0) {
+                            this.toastService.openAlertSnackBar(message);
+                        }
+                        RootComponent.hiddenProgress();
                     }
                 }
 
