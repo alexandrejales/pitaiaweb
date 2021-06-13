@@ -16,10 +16,23 @@ body {
     min-width: max-content;
 }
 
-
-/* Define o tamaho dos input */
-
+// Input do Angular Material
 mat-form-field.mat-form-field {
-    font-size: 14px;
+    font-size: 14px; // Tamanho dos input do Angular Material
+    width: 100%; // Todos os input ocupa 100% da div disponivel
+}
+
+// Espaçamento de Coluna de tabelas
+.full-space {
     width: 100%;
+    @media (min-width: 576px) {
+        width: auto;
+    }
+}
+
+//Espacamento entre Colunas de todas as tabelas
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+    padding-left: 6px !important;
 }
