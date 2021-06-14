@@ -1,4 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { UsuarioForm } from 'src/app/model/form/usuario-form';
 import { ToastService } from 'src/app/service/toast.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
@@ -8,12 +10,15 @@ import { UsuarioService } from 'src/app/service/usuario.service';
     templateUrl: './listar-usuario.component.html',
     styleUrls: ['./listar-usuario.component.scss']
 })
-export class ListarUsuarioComponent implements OnInit {
+export class ListarUsuarioComponent implements OnInit, AfterViewInit {
 
     displayedColumns: string[] = [];
     columnsLarger: string[] = ['item', 'nome', 'email', 'tipo', 'bloqueado', 'acao'];
     columnsSmall: string[] = ['item', 'nome', 'acao'];
-    usuarioFormList: UsuarioForm[] = [];
+
+    dataSource = new MatTableDataSource<UsuarioForm>();
+    @ViewChild(MatPaginator) paginator?: MatPaginator;
+
     index = 0;
 
     constructor(private usuarioService: UsuarioService, private toastService: ToastService) { }
@@ -21,6 +26,12 @@ export class ListarUsuarioComponent implements OnInit {
     ngOnInit(): void {
         this.onScrennResize();
         this.onFindAll();
+    }
+
+    ngAfterViewInit(): void {
+        if (this.paginator !== undefined) {
+            this.dataSource.paginator = this.paginator;
+        }
     }
 
     @HostListener('window:resize', ['$event'])
@@ -36,7 +47,7 @@ export class ListarUsuarioComponent implements OnInit {
         this.usuarioService.findAll().subscribe(
             {
                 next: data => {
-                    this.usuarioFormList = data;
+                    this.dataSource.data = data;
                 },
                 error: error => {
                     // Imprime erro da exception da API

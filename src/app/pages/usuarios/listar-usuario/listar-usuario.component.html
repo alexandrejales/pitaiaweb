@@ -13,7 +13,7 @@
 
 <div class="table-responsive">
     <div class="table">
-        <table mat-table [dataSource]="usuarioFormList" class="w-100">
+        <table mat-table [dataSource]="dataSource" class="w-100">
 
             <ng-container matColumnDef="item">
                 <th mat-header-cell *matHeaderCellDef> Item </th>
@@ -52,5 +52,6 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 </div>

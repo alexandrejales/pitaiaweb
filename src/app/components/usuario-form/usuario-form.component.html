@@ -4,17 +4,18 @@
     <div class="col-sm-8">
         <mat-form-field appearance="outline">
             <mat-label>Nome Completo</mat-label>
-            <input matInput type="text" [(ngModel)]="infoAcessoForm.nome" required>
+            <input class="meutexto" matInput type="text" [(ngModel)]="infoAcessoForm.nome" required>
             <button mat-button *ngIf="infoAcessoForm.nome" matSuffix mat-icon-button aria-label="Clear" (click)="infoAcessoForm.nome=''">
                 <mat-icon>close</mat-icon>
             </button>
+            <mat-hint>Hint</mat-hint>
         </mat-form-field>
     </div>
 
     <div class="col-sm-4">
         <mat-form-field appearance="outline">
             <mat-label>Perfil</mat-label>
-            <mat-select [(value)]="infoAcessoForm.tipo">
+            <mat-select [(value)]="infoAcessoForm.tipo" required>
                 <mat-option value="COLABORADOR">Colaborador</mat-option>
                 <mat-option value="GESTOR">Gestor</mat-option>
                 <mat-option value="ADMIN">Admin</mat-option>
@@ -39,7 +40,7 @@
     <div class="col-sm-4">
         <mat-form-field appearance="outline">
             <mat-label>Senha</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="infoAcessoForm.senha" name="senha" id="senha">
+            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="infoAcessoForm.senha" name="senha" id="senha" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar senha'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>

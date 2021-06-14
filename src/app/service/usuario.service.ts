@@ -14,14 +14,14 @@ export class UsuarioService {
         return this.httpClient.get<UsuarioForm[]>(Constantes.API_URL + '/teste')
             .pipe(
                 catchError(this.handleError)
-            )
+            );
     }
 
     onFindOneTeste(): Observable<string> {
         return this.httpClient.get<string>('https://jsonplaceholder.typicode.com/todos/1')
             .pipe(
                 catchError(this.handleError)
-            )
+            );
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
